@@ -1,12 +1,31 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title>Hello World</title>
+    <url>/2024/06/25/hello-world/</url>
+    <content><![CDATA[<link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/hint.css/2.4.1/hint.min.css"><p>Welcome to <a href="https://hexo.io/">Hexo</a>! This is your very first post. Check <a href="https://hexo.io/docs/">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a href="https://hexo.io/docs/troubleshooting.html">troubleshooting</a> or you can ask me on <a href="https://github.com/hexojs/hexo/issues">GitHub</a>.</p>
+<h2 id="Quick-Start">Quick Start</h2>
+<h3 id="Create-a-new-post">Create a new post</h3>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo new <span class="string">&quot;My New Post&quot;</span></span><br></pre></td></tr></table></figure>
+<p>More info: <a href="https://hexo.io/docs/writing.html">Writing</a></p>
+<h3 id="Run-server">Run server</h3>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo server</span><br></pre></td></tr></table></figure>
+<p>More info: <a href="https://hexo.io/docs/server.html">Server</a></p>
+<h3 id="Generate-static-files">Generate static files</h3>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo generate</span><br></pre></td></tr></table></figure>
+<p>More info: <a href="https://hexo.io/docs/generating.html">Generating</a></p>
+<h3 id="Deploy-to-remote-sites">Deploy to remote sites</h3>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo deploy</span><br></pre></td></tr></table></figure>
+<p>More info: <a href="https://hexo.io/docs/one-command-deployment.html">Deployment</a></p>
+]]></content>
+  </entry>
+  <entry>
     <title>软路由折腾记-上篇</title>
     <url>/2024/06/26/%E8%BD%AF%E8%B7%AF%E7%94%B1%E6%8A%98%E8%85%BE%E8%AE%B0-%E4%B8%8A%E7%AF%87/</url>
-    <content><![CDATA[<link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/hint.css/2.4.1/hint.min.css"><h2 id="前言："><a class="header-anchor" href="#前言：">¶</a>前言：</h2>
+    <content><![CDATA[<link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/hint.css/2.4.1/hint.min.css"><h2 id="前言：">前言：</h2>
 <p>路由器的折腾最早从小米路由器3开始，刷Pandavan，送给亲戚了仍在服役；然后是Netgear R7000刷梅林，如今的千兆家宽仍能跑满速，平时吃灰作为备机；再接着换成360v6，刷OpenWrt，随着功能叠加512内存捉襟见肘，更是因为天热CPU温度快压不住了。于是，就有了今天文章的主角–<strong>友善R5s-LST版</strong>。</p>
 <span id="more"></span>
-<h2 id="硬件挑选考量："><a class="header-anchor" href="#硬件挑选考量：">¶</a>硬件挑选考量：</h2>
+<h2 id="硬件挑选考量：">硬件挑选考量：</h2>
 <ol>
 <li>至少3+的网口数量，不带WiFi，满足千兆网络</li>
 <li>控温出色，噪音低，外形足够小巧，放入弱电箱</li>
@@ -14,15 +33,15 @@
 <li>运存2G+，能扛起360v6内所有服务，并流畅稳定</li>
 <li>预算在500块以内，优先考虑海鲜市场看了各种测评，并为今后升级留有余量，斥资近6百大洋，购入4G版本的R5s LTS。对比以上的需求，这款软路由性能是有溢出的，但为了今后的折腾之路走得更顺畅。</li>
 </ol>
-<h2 id="开始刷机："><a class="header-anchor" href="#开始刷机：">¶</a>开始刷机：</h2>
+<h2 id="开始刷机：">开始刷机：</h2>
 <p>我从马粑粑家上购买，到手后是没有安装OS系统的，访问<a href="http://download.friendlyelec.com/NanoPiR5S">官方下载地址</a>，先刷入官方的FriendlyWrt。我没有某度的网盘会员，那就选择GoogleDrive🤣，下载固件rk3568-usb-friendlywrt-23.05-20240606.zip。</p>
-<h3 id="刷机前准备："><a class="header-anchor" href="#刷机前准备：">¶</a>刷机前准备：</h3>
+<h3 id="刷机前准备：">刷机前准备：</h3>
 <ol>
 <li>USB公对公数据线</li>
 <li>瑞芯微的USB驱动</li>
 <li>可以戳入Mask孔的卡针</li>
 </ol>
-<h3 id="USB烧写步骤-sup-id-fnref-1-a-href-fn-1-rel-footnote-span-class-hint-top-hint-error-hint-medium-hint-rounded-hint-bounce-aria-label-详情参考友善官网“-通过USB烧写-https-wiki-friendlyelec-com-wiki-index-php-NanoPi-R5S-zh-E6-96-B9-E6-B3-953-E9-80-9A-E8-BF-87USB-E7-83-A7-E5-86-99-”-1-span-a-sup"><a class="header-anchor" href="#USB烧写步骤-sup-id-fnref-1-a-href-fn-1-rel-footnote-span-class-hint-top-hint-error-hint-medium-hint-rounded-hint-bounce-aria-label-详情参考友善官网“-通过USB烧写-https-wiki-friendlyelec-com-wiki-index-php-NanoPi-R5S-zh-E6-96-B9-E6-B3-953-E9-80-9A-E8-BF-87USB-E7-83-A7-E5-86-99-”-1-span-a-sup">¶</a>USB烧写步骤<sup id="fnref:1"><a href="#fn:1" rel="footnote"><span class="hint--top hint--error hint--medium hint--rounded hint--bounce" aria-label="详情参考友善官网“[通过USB烧写](https://wiki.friendlyelec.com/wiki/index.php/NanoPi_R5S/zh#.E6.96.B9.E6.B3.953:_.E9.80.9A.E8.BF.87USB.E7.83.A7.E5.86.99)”">[1]</span></a></sup> :</h3>
+<h3 id="USB烧写步骤-sup-id-fnref-1-a-href-fn-1-rel-footnote-span-class-hint-top-hint-error-hint-medium-hint-rounded-hint-bounce-aria-label-详情参考友善官网“-通过USB烧写-https-wiki-friendlyelec-com-wiki-index-php-NanoPi-R5S-zh-E6-96-B9-E6-B3-953-E9-80-9A-E8-BF-87USB-E7-83-A7-E5-86-99-”-1-span-a-sup">USB烧写步骤<sup id="fnref:1"><a href="#fn:1" rel="footnote"><span class="hint--top hint--error hint--medium hint--rounded hint--bounce" aria-label="详情参考友善官网“[通过USB烧写](https://wiki.friendlyelec.com/wiki/index.php/NanoPi_R5S/zh#.E6.96.B9.E6.B3.953:_.E9.80.9A.E8.BF.87USB.E7.83.A7.E5.86.99)”">[1]</span></a></sup> :</h3>
 <ol>
 <li>
 <p>移除R5s设备上的所有外设和TF卡，用卡针按住<strong>靠近HDMI接口边</strong>的Mask按键不放, 插上电源, 保持按住Mask键, 状态灯亮起3秒后即可松开；</p>
@@ -42,24 +61,5 @@
         <tag>软路由</tag>
         <tag>OpenWrt</tag>
       </tags>
-  </entry>
-  <entry>
-    <title>Hello World</title>
-    <url>/2024/06/25/hello-world/</url>
-    <content><![CDATA[<link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/hint.css/2.4.1/hint.min.css"><p>Welcome to <a href="https://hexo.io/">Hexo</a>! This is your very first post. Check <a href="https://hexo.io/docs/">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a href="https://hexo.io/docs/troubleshooting.html">troubleshooting</a> or you can ask me on <a href="https://github.com/hexojs/hexo/issues">GitHub</a>.</p>
-<h2 id="Quick-Start"><a class="header-anchor" href="#Quick-Start">¶</a>Quick Start</h2>
-<h3 id="Create-a-new-post"><a class="header-anchor" href="#Create-a-new-post">¶</a>Create a new post</h3>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo new <span class="string">&quot;My New Post&quot;</span></span><br></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/writing.html">Writing</a></p>
-<h3 id="Run-server"><a class="header-anchor" href="#Run-server">¶</a>Run server</h3>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo server</span><br></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/server.html">Server</a></p>
-<h3 id="Generate-static-files"><a class="header-anchor" href="#Generate-static-files">¶</a>Generate static files</h3>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo generate</span><br></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/generating.html">Generating</a></p>
-<h3 id="Deploy-to-remote-sites"><a class="header-anchor" href="#Deploy-to-remote-sites">¶</a>Deploy to remote sites</h3>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo deploy</span><br></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/one-command-deployment.html">Deployment</a></p>
-]]></content>
   </entry>
 </search>
