@@ -6,7 +6,7 @@ HTMLElement.prototype.wrap = function(wrapper) {
   wrapper.appendChild(this);
 };
 
-NexT.utils = {
+@@ -11,6 +11,7 @@ NexT.utils = {
 
   /**
    * Wrap images with fancybox.
