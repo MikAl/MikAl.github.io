@@ -27,15 +27,15 @@
 <meta property="og:site_name" content="Mike White&#39;s Space">
 <meta property="og:description" content="前言：路由器的折腾最早从小米路由器3开始，刷Pandavan，送给亲戚了仍在服役；然后是Netgear R7000刷梅林，如今的千兆家宽仍能跑满速，平时吃灰作为备机；再接着换成360v6，刷OpenWrt，随着功能叠加512内存捉襟见肘，更是因为天热CPU温度快压不住了。于是，就有了今天文章的主角–友善R5s-LST版。 硬件挑选考量： 至少3+的网口数量，不带WiFi，满足千兆网络  控温出色，">
 <meta property="og:locale" content="zh_CN">
-<meta property="og:image" content="http://example.com/%E8%BD%AF%E8%B7%AF%E7%94%B1%E6%8A%98%E8%85%BE%E8%AE%B0-%E4%B8%8A%E7%AF%87/image.png">
+<meta property="og:image" content="http://example.com/2024/06/26/%E8%BD%AF%E8%B7%AF%E7%94%B1%E6%8A%98%E8%85%BE%E8%AE%B0-%E4%B8%8A%E7%AF%87/image.png">
 <meta property="og:image" content="http://example.com/2024/06/26/%E8%BD%AF%E8%B7%AF%E7%94%B1%E6%8A%98%E8%85%BE%E8%AE%B0-%E4%B8%8A%E7%AF%87/image-1.png">
 <meta property="article:published_time" content="2024-06-26T07:48:47.000Z">
-<meta property="article:modified_time" content="2024-06-27T09:16:46.309Z">
+<meta property="article:modified_time" content="2024-06-27T09:21:06.545Z">
 <meta property="article:author" content="MikeW">
 <meta property="article:tag" content="软路由">
 <meta property="article:tag" content="OpenWrt">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:image" content="http://example.com/%E8%BD%AF%E8%B7%AF%E7%94%B1%E6%8A%98%E8%85%BE%E8%AE%B0-%E4%B8%8A%E7%AF%87/image.png">
+<meta name="twitter:image" content="http://example.com/2024/06/26/%E8%BD%AF%E8%B7%AF%E7%94%B1%E6%8A%98%E8%85%BE%E8%AE%B0-%E4%B8%8A%E7%AF%87/image.png">
 
 <link rel="canonical" href="http://example.com/2024/06/26/%E8%BD%AF%E8%B7%AF%E7%94%B1%E6%8A%98%E8%85%BE%E8%AE%B0-%E4%B8%8A%E7%AF%87/">
 
@@ -191,7 +191,7 @@
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2024-06-27 17:16:46" itemprop="dateModified" datetime="2024-06-27T17:16:46+08:00">2024-06-27</time>
+                <time title="修改时间：2024-06-27 17:21:06" itemprop="dateModified" datetime="2024-06-27T17:21:06+08:00">2024-06-27</time>
               </span>
 
           <br>
@@ -236,7 +236,7 @@
 <h3 id="USB烧写步骤-1"><a href="#USB烧写步骤-1" class="headerlink" title="USB烧写步骤^1 :"></a>USB烧写步骤<a href="%E5%8F%8B%E5%96%84%E5%AE%98%E7%BD%91%E2%80%9C%5B%E9%80%9A%E8%BF%87USB%E7%83%A7%E5%86%99%5D(https://wiki.friendlyelec.com/wiki/index.php/NanoPi_R5S/zh#.E6.96.B9.E6.B3.953:_.E9.80.9A.E8.BF.87USB.E7.83.A7.E5.86.99)%E2%80%9D">^1</a> :</h3><ol>
 <li><p>移除R5s设备上的所有外设和TF卡，用卡针按住<strong>靠近HDMI接口边</strong>的Mask按键不放, 插上电源, 保持按住Mask键, 状态灯亮起3秒后即可松开；</p>
 </li>
-<li><p>用USB公对公数据线，将设备与电脑进行连接, 连接方法参照下图, 需要连接靠近外侧的USB端口；<br><img src="/./%E8%BD%AF%E8%B7%AF%E7%94%B1%E6%8A%98%E8%85%BE%E8%AE%B0-%E4%B8%8A%E7%AF%87/image.png" alt="USB Connection Diagram"></p>
+<li><p>用USB公对公数据线，将设备与电脑进行连接, 连接方法参照下图, 需要连接靠近外侧的USB端口；<br><img src="/2024/06/26/%E8%BD%AF%E8%B7%AF%E7%94%B1%E6%8A%98%E8%85%BE%E8%AE%B0-%E4%B8%8A%E7%AF%87/image.png" alt="USB Connection Diagram"></p>
 </li>
 <li><p>解压缩官方固件zip包，运行其中RKDevTool.exe，启动瑞芯微开发工具，界面上会显示 “发现一个Maskrom设备”, 点击界面上的“执行”按钮, 稍等片刻即可完成烧写, 完成后设备会自动重启；</p>
 </li>
