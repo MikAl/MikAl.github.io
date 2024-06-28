@@ -1,0 +1,481 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 7.2.0">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/all.min.css">
+
+<script id="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"mikal.github.io","root":"/","scheme":"Muse","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":true,"show_result":true,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"search.xml"};
+  </script>
+
+  <meta name="description" content="书接上文，这篇将主要阐明在路由器里运行哪些服务和插件，并重点记录下魔都IPv6网络和IPTV收看的配置要点。 服务和插件🌟  PPPoE拨号 IPv6网络 IPTV收看和转单播 DNS防污染和加密 科学上网 Alist网盘 DDNS映射 KMS服务器 HomeAssistant设备跟踪 Wireguard回家  准备工作🔑  光猫改桥接，致电10000，向客服申请下，然后重启光猫即可； 刷入O">
+<meta property="og:type" content="article">
+<meta property="og:title" content="软路由折腾记-中篇">
+<meta property="og:url" content="https://mikal.github.io/2024/06/28/%E8%BD%AF%E8%B7%AF%E7%94%B1%E6%8A%98%E8%85%BE%E8%AE%B0-%E4%B8%AD%E7%AF%87/index.html">
+<meta property="og:site_name" content="Mike White&#39;s Space">
+<meta property="og:description" content="书接上文，这篇将主要阐明在路由器里运行哪些服务和插件，并重点记录下魔都IPv6网络和IPTV收看的配置要点。 服务和插件🌟  PPPoE拨号 IPv6网络 IPTV收看和转单播 DNS防污染和加密 科学上网 Alist网盘 DDNS映射 KMS服务器 HomeAssistant设备跟踪 Wireguard回家  准备工作🔑  光猫改桥接，致电10000，向客服申请下，然后重启光猫即可； 刷入O">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://mikal.github.io/2024/06/28/%E8%BD%AF%E8%B7%AF%E7%94%B1%E6%8A%98%E8%85%BE%E8%AE%B0-%E4%B8%AD%E7%AF%87/image.png">
+<meta property="og:image" content="https://mikal.github.io/2024/06/28/%E8%BD%AF%E8%B7%AF%E7%94%B1%E6%8A%98%E8%85%BE%E8%AE%B0-%E4%B8%AD%E7%AF%87/image-msdl.png">
+<meta property="article:published_time" content="2024-06-28T06:40:41.000Z">
+<meta property="article:modified_time" content="2024-06-28T09:59:25.361Z">
+<meta property="article:author" content="MikeW">
+<meta property="article:tag" content="OpenWrt">
+<meta property="article:tag" content="IPTV">
+<meta property="article:tag" content="IPv6">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://mikal.github.io/2024/06/28/%E8%BD%AF%E8%B7%AF%E7%94%B1%E6%8A%98%E8%85%BE%E8%AE%B0-%E4%B8%AD%E7%AF%87/image.png">
+
+<link rel="canonical" href="https://mikal.github.io/2024/06/28/%E8%BD%AF%E8%B7%AF%E7%94%B1%E6%8A%98%E8%85%BE%E8%AE%B0-%E4%B8%AD%E7%AF%87/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : false,
+    isPost : true,
+    lang   : 'zh-CN'
+  };
+</script>
+
+  <title>软路由折腾记-中篇 | Mike White's Space</title>
+  
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <h1 class="site-title">Mike White's Space</h1>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+      <p class="site-subtitle" itemprop="description">麦克白--空想世界</p>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+    </div>
+  </div>
+</div>
+
+
+
+
+<nav class="site-nav">
+  <ul id="menu" class="main-menu menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a>
+
+  </li>
+        <li class="menu-item menu-item-tags">
+
+    <a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签</a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档</a>
+
+  </li>
+        <li class="menu-item menu-item-sitemap">
+
+    <a href="/sitemap.xml" rel="section"><i class="fa fa-sitemap fa-fw"></i>站点地图</a>
+
+  </li>
+  </ul>
+</nav>
+
+
+
+
+</div>
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content post posts-expand">
+            
+
+    
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://mikal.github.io/2024/06/28/%E8%BD%AF%E8%B7%AF%E7%94%B1%E6%8A%98%E8%85%BE%E8%AE%B0-%E4%B8%AD%E7%AF%87/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.png">
+      <meta itemprop="name" content="MikeW">
+      <meta itemprop="description" content="麦克白的碎碎念念，记录下生活的折腾">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Mike White's Space">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          软路由折腾记-中篇
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+              
+
+              <time title="创建时间：2024-06-28 14:40:41 / 修改时间：17:59:25" itemprop="dateCreated datePublished" datetime="2024-06-28T14:40:41+08:00">2024-06-28</time>
+            </span>
+
+          <br>
+            <span class="post-meta-item" title="本文字数">
+              <span class="post-meta-item-icon">
+                <i class="far fa-file-word"></i>
+              </span>
+                <span class="post-meta-item-text">本文字数：</span>
+              <span>4.7k</span>
+            </span>
+            <span class="post-meta-item" title="阅读时长">
+              <span class="post-meta-item-icon">
+                <i class="far fa-clock"></i>
+              </span>
+                <span class="post-meta-item-text">阅读时长 &asymp;</span>
+              <span>8 分钟</span>
+            </span>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/hint.css/2.4.1/hint.min.css"><p>书接上文，这篇将主要阐明在路由器里运行哪些服务和插件，并重点记录下魔都IPv6网络和IPTV收看的配置要点。</p>
+<h2 id="服务和插件🌟">服务和插件🌟</h2>
+<ul>
+<li>PPPoE拨号</li>
+<li>IPv6网络</li>
+<li>IPTV收看和转单播</li>
+<li>DNS防污染和加密</li>
+<li>科学上网</li>
+<li>Alist网盘</li>
+<li>DDNS映射</li>
+<li>KMS服务器</li>
+<li>HomeAssistant设备跟踪</li>
+<li>Wireguard回家</li>
+</ul>
+<h2 id="准备工作🔑">准备工作🔑</h2>
+<ol>
+<li>光猫改桥接，致电10000，向客服申请下，然后重启光猫即可；</li>
+<li>刷入OpenWrt固件的软路由，这里使用的版本是QWRT R24.3.3；</li>
+<li>获取到拨号上网的账号和密码。</li>
+</ol>
+<h2 id="开始配置🛠️">开始配置🛠️</h2>
+<p>SSH登录路由器，输入以下代码，解锁显示科学上网</p>
+<figure class="highlight shell"><figcaption><span>Unlock SSR & OpenClash</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">echo 0xDEADBEEF &gt; /etc/config/google_fu_mode</span><br></pre></td></tr></table></figure>
+<p>以下未提及的设置均为默认：</p>
+<h3 id="修改WAN口配置">修改WAN口配置</h3>
+<p>协议：PPPoE<br>
+设备：eth0（本人eth0连光猫，请以自己实际情况为准）开机自动运行：勾选<br>
+PAP/CHAP 用户名：PPPoE账号<br>
+PAP/CHAP 密码：PPPoE密码高级设置-获取 IPv6 地址：手动（不自动生成Wan6，使用固定的Wan6接口。）</p>
+<h3 id="配置WAN6接口：">配置WAN6接口：</h3>
+<p>协议：DHCPv6客户端开机自动运行：勾选请求IPv6地址：try<br>
+请求指定长度的IPv6前缀：自动物理设置-自定义接口：pppoe-wan</p>
+<h3 id="配置LAN接口：">配置LAN接口：</h3>
+<p>物理设置-启用 IGMP 嗅探：✔ （<span style="color: red;">后续IPTV配置需要</span>）<br>
+IPv6 分配长度：60 （请以自己实际情况为准）<br>
+DHCP服务器-IPv6设置：前三项“混合模式”<br>
+DHCP服务器-IPv6设置-DHCPv6模式：无状态的+有状态的<br>
+<img src="/2024/06/28/%E8%BD%AF%E8%B7%AF%E7%94%B1%E6%8A%98%E8%85%BE%E8%AE%B0-%E4%B8%AD%E7%AF%87/image.png" alt="alt text" loading="lazy"></p>
+<p>至此已经可以<strong>正常访问内外网</strong>🎉，并有了IPv6网络环境。</p>
+<h2 id="配置IPTV📺">配置IPTV📺</h2>
+<h3 id="添加IPTV85接口">添加IPTV85接口</h3>
+<p>名称：iptv85<br>
+协议：DHCP客户端桥接：✔<br>
+自定义接口：eth0.85, eth1.85, eth2.85（添加所有端口的VLAN方便盲插IPTV）开机自动运行：✔<br>
+高级设置-使用默认网关：✔<br>
+高级设置-使用网关跃点：20（大于0即可）防火墙设置-创建/分配防火墙区域：lan</p>
+<h3 id="添加IPTV51接口">添加IPTV51接口</h3>
+<p>名称：iptv51<br>
+协议：不配置协议桥接：✔<br>
+自定义接口：eth0.51, eth1.51, eth2.51（回看要用到vlan，不确定是否有用，加不加都可以）防火墙设置-创建/分配防火墙区域：lan</p>
+<h3 id="修改dnsmasq-conf">修改dnsmasq.conf</h3>
+<p>SSH远程到路由器，修改/etc/dnsmasq.conf文件，添加以下内容并保存。</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">dhcp-option-force=125,00:00:00:00:1a:02:06:48:47:57:2d:43:54:03:04:5a:58:48:4e:0a:02:20:00:0b:02:00:55:0d:02:00:2e</span><br><span class="line">dhcp-option=15</span><br><span class="line">dhcp-option=28</span><br><span class="line">dhcp-option=60,00:00:01:06:68:75:61:71:69:6E:02:0A:48:47:55:34:32:31:4E:20:76:33:03:0A:48:47:55:34:32:31:4E:20:76:33:04:10:32:30:30:2E:55:59:59:2E:30:2E:41:2E:30:2E:53:48:05:04:00:01:00:50</span><br></pre></td></tr></table></figure>
+<p>至此，IPTV机顶盒已经可以使用了，<strong>直播和回放</strong>均正常。</p>
+<h3 id="强制IGMPv2">强制IGMPv2</h3>
+<p>修改/etc/sysctl.conf 文件，添加以下内容保存，强制使用IGMPv2，<span style="color: red;">可以不开IPTV机顶盒也能播放</span></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">net.ipv4.conf.all.force_igmp_version=2</span><br></pre></td></tr></table></figure>
+<h3 id="设置MSDL插件">设置MSDL插件</h3>
+<p>配置Multi Stream Daemon Lite，这款插件据称比udpxy更省运行资源。启用：✔<br>
+端口：4022<br>
+上游VLAN接口：br-iptv85（Vlan接口请根据实际情况调整）<br>
+<img src="/2024/06/28/%E8%BD%AF%E8%B7%AF%E7%94%B1%E6%8A%98%E8%85%BE%E8%AE%B0-%E4%B8%AD%E7%AF%87/image-msdl.png" alt="alt text" loading="lazy"></p>
+<p>到了这里，组播转单播也工作了，根据你自己软路由的IP地址，更新这个<a target="_blank" rel="noopener" href="https://pan.baidu.com/s/1cGbKRzjKfUPVEA3K74Y0Eg?pwd=cbn5">m3u文件</a>，即将<em>192.168.50.254</em>批量替换掉。</p>
+<h2 id="便捷配置🔄">便捷配置🔄</h2>
+<p>若你正好也正巧也是使用同款固件或者Lean大佬的其他版本，可以根据自身硬件修改以下配置文件，保存后重启设备生效。</p>
+<p><span style="color: red;"> vi /etc/config/network </span></p>
+<figure class="highlight shell"><figcaption><span>network</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br></pre></td><td class="code"><pre><span class="line">config interface &#x27;loopback&#x27;</span><br><span class="line">        option ifname &#x27;lo&#x27;</span><br><span class="line">        option proto &#x27;static&#x27;</span><br><span class="line">        option ipaddr &#x27;127.0.0.1&#x27;</span><br><span class="line">        option netmask &#x27;255.0.0.0&#x27;</span><br><span class="line"></span><br><span class="line">config interface &#x27;lan&#x27;</span><br><span class="line">        option type &#x27;bridge&#x27;</span><br><span class="line">        option ifname &#x27;eth1 eth2&#x27;</span><br><span class="line">        option proto &#x27;static&#x27;</span><br><span class="line">        option netmask &#x27;255.255.255.0&#x27;</span><br><span class="line">        option ip6assign &#x27;60&#x27;</span><br><span class="line">        option delegate &#x27;0&#x27;</span><br><span class="line">        option ipaddr &#x27;192.168.50.1&#x27;</span><br><span class="line">        option igmp_snooping &#x27;1&#x27;</span><br><span class="line"></span><br><span class="line">config interface &#x27;wan&#x27;</span><br><span class="line">        option ifname &#x27;eth0&#x27;</span><br><span class="line">        option _orig_ifname &#x27;eth0&#x27;</span><br><span class="line">        option _orig_bridge &#x27;false&#x27;</span><br><span class="line">        option proto &#x27;pppoe&#x27;</span><br><span class="line">        option username &#x27;ad1234&#x27;</span><br><span class="line">        option password &#x27;12345678&#x27;</span><br><span class="line">        option keepalive &#x27;0&#x27;</span><br><span class="line">        option ipv6 &#x27;1&#x27;</span><br><span class="line">		</span><br><span class="line">config interface &#x27;wan6&#x27;                                                  </span><br><span class="line">        option ifname &#x27;pppoe-wan&#x27;                                        </span><br><span class="line">        option _orig_ifname &#x27;pppoe-wan&#x27;                                  </span><br><span class="line">        option _orig_bridge &#x27;false&#x27;                                      </span><br><span class="line">        option proto &#x27;dhcpv6&#x27;                                            </span><br><span class="line">        option reqaddress &#x27;try&#x27;                                          </span><br><span class="line">        option reqprefix &#x27;auto&#x27;  		</span><br><span class="line">		</span><br><span class="line">config interface &#x27;IPTV85&#x27;                            </span><br><span class="line">        option type &#x27;bridge&#x27;                         </span><br><span class="line">        option proto &#x27;dhcp&#x27;                          </span><br><span class="line">        option hostname &#x27;zte&#x27;                        </span><br><span class="line">        option metric &#x27;20&#x27;                               </span><br><span class="line">        option _orig_bridge &#x27;true&#x27;                   </span><br><span class="line">        option ifname &#x27;eth0.85 eth1.85 eth2.85&#x27;                          </span><br><span class="line">        option _orig_ifname &#x27;eth0.85 eth1.85 eth2.85&#x27;                    </span><br><span class="line">        option broadcast &#x27;1&#x27;                                             </span><br><span class="line">                                                                         </span><br><span class="line">config interface &#x27;IPTV51&#x27;                                                </span><br><span class="line">        option type &#x27;bridge&#x27;                                             </span><br><span class="line">        option proto &#x27;none&#x27;                                              </span><br><span class="line">        option auto &#x27;1&#x27;                                                  </span><br><span class="line">        option _orig_ifname &#x27;eth0.51&#x27;                                    </span><br><span class="line">        option _orig_bridge &#x27;true&#x27;                                       </span><br><span class="line">        option ifname &#x27;eth0.51 eth1.51 eth2.51&#x27;                          </span><br><span class="line">        option delegate &#x27;0&#x27;                                              </span><br><span class="line">        option igmp_snooping &#x27;1&#x27; </span><br></pre></td></tr></table></figure>
+    </div>
+
+    
+    
+    
+
+      <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/OpenWrt/" rel="tag"># OpenWrt</a>
+              <a href="/tags/IPTV/" rel="tag"># IPTV</a>
+              <a href="/tags/IPv6/" rel="tag"># IPv6</a>
+          </div>
+
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/2024/06/26/%E8%BD%AF%E8%B7%AF%E7%94%B1%E6%8A%98%E8%85%BE%E8%AE%B0-%E4%B8%8A%E7%AF%87/" rel="prev" title="软路由折腾记-上篇">
+      <i class="fa fa-chevron-left"></i> 软路由折腾记-上篇
+    </a></div>
+      <div class="post-nav-item"></div>
+    </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+
+
+          </div>
+          
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%9C%8D%E5%8A%A1%E5%92%8C%E6%8F%92%E4%BB%B6%F0%9F%8C%9F"><span class="nav-number">1.</span> <span class="nav-text">服务和插件🌟</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%87%86%E5%A4%87%E5%B7%A5%E4%BD%9C%F0%9F%94%91"><span class="nav-number">2.</span> <span class="nav-text">准备工作🔑</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%BC%80%E5%A7%8B%E9%85%8D%E7%BD%AE%F0%9F%9B%A0%EF%B8%8F"><span class="nav-number">3.</span> <span class="nav-text">开始配置🛠️</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%BF%AE%E6%94%B9WAN%E5%8F%A3%E9%85%8D%E7%BD%AE"><span class="nav-number">3.1.</span> <span class="nav-text">修改WAN口配置</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E9%85%8D%E7%BD%AEWAN6%E6%8E%A5%E5%8F%A3%EF%BC%9A"><span class="nav-number">3.2.</span> <span class="nav-text">配置WAN6接口：</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E9%85%8D%E7%BD%AELAN%E6%8E%A5%E5%8F%A3%EF%BC%9A"><span class="nav-number">3.3.</span> <span class="nav-text">配置LAN接口：</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E9%85%8D%E7%BD%AEIPTV%F0%9F%93%BA"><span class="nav-number">4.</span> <span class="nav-text">配置IPTV📺</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%B7%BB%E5%8A%A0IPTV85%E6%8E%A5%E5%8F%A3"><span class="nav-number">4.1.</span> <span class="nav-text">添加IPTV85接口</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%B7%BB%E5%8A%A0IPTV51%E6%8E%A5%E5%8F%A3"><span class="nav-number">4.2.</span> <span class="nav-text">添加IPTV51接口</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%BF%AE%E6%94%B9dnsmasq-conf"><span class="nav-number">4.3.</span> <span class="nav-text">修改dnsmasq.conf</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%BC%BA%E5%88%B6IGMPv2"><span class="nav-number">4.4.</span> <span class="nav-text">强制IGMPv2</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E8%AE%BE%E7%BD%AEMSDL%E6%8F%92%E4%BB%B6"><span class="nav-number">4.5.</span> <span class="nav-text">设置MSDL插件</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%BE%BF%E6%8D%B7%E9%85%8D%E7%BD%AE%F0%9F%94%84"><span class="nav-number">5.</span> <span class="nav-text">便捷配置🔄</span></a></li></ol></div>
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="MikeW"
+      src="/images/avatar.png">
+  <p class="site-author-name" itemprop="name">MikeW</p>
+  <div class="site-description" itemprop="description">麦克白的碎碎念念，记录下生活的折腾</div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">3</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/tags/">
+          
+        <span class="site-state-item-count">4</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+
+
+
+      </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+        
+
+<div class="copyright">
+  
+  &copy; 
+  <span itemprop="copyrightYear">2024</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">MikeW</span>
+</div>
+  <div class="powered-by">由 <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://muse.theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Muse</a> 强力驱动
+  </div>
+
+        
+
+
+
+
+
+
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  <script src="/lib/anime.min.js"></script>
+  <script src="/lib/velocity/velocity.min.js"></script>
+  <script src="/lib/velocity/velocity.ui.min.js"></script>
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/motion.js"></script>
+
+
+<script src="/js/schemes/muse.js"></script>
+
+
+<script src="/js/next-boot.js"></script>
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+
+</body>
+</html>

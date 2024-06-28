@@ -17,7 +17,7 @@
 
 <script id="hexo-configurations">
     var NexT = window.NexT || {};
-    var CONFIG = {"hostname":"mikal.github.io","root":"/","scheme":"Muse","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"search.xml"};
+    var CONFIG = {"hostname":"mikal.github.io","root":"/","scheme":"Muse","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":true,"show_result":true,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"search.xml"};
   </script>
 
   <meta name="description" content="麦克白的碎碎念念，记录下生活的折腾">
@@ -158,6 +158,109 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://mikal.github.io/2024/06/28/%E8%BD%AF%E8%B7%AF%E7%94%B1%E6%8A%98%E8%85%BE%E8%AE%B0-%E4%B8%AD%E7%AF%87/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.png">
+      <meta itemprop="name" content="MikeW">
+      <meta itemprop="description" content="麦克白的碎碎念念，记录下生活的折腾">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Mike White's Space">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2024/06/28/%E8%BD%AF%E8%B7%AF%E7%94%B1%E6%8A%98%E8%85%BE%E8%AE%B0-%E4%B8%AD%E7%AF%87/" class="post-title-link" itemprop="url">软路由折腾记-中篇</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+              
+
+              <time title="创建时间：2024-06-28 14:40:41 / 修改时间：17:59:25" itemprop="dateCreated datePublished" datetime="2024-06-28T14:40:41+08:00">2024-06-28</time>
+            </span>
+
+          <br>
+            <span class="post-meta-item" title="本文字数">
+              <span class="post-meta-item-icon">
+                <i class="far fa-file-word"></i>
+              </span>
+                <span class="post-meta-item-text">本文字数：</span>
+              <span>4.7k</span>
+            </span>
+            <span class="post-meta-item" title="阅读时长">
+              <span class="post-meta-item-icon">
+                <i class="far fa-clock"></i>
+              </span>
+                <span class="post-meta-item-text">阅读时长 &asymp;</span>
+              <span>8 分钟</span>
+            </span>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/hint.css/2.4.1/hint.min.css"><p>书接上文，这篇将主要阐明在路由器里运行哪些服务和插件，并重点记录下魔都IPv6网络和IPTV收看的配置要点。</p>
+<h2 id="服务和插件🌟">服务和插件🌟</h2>
+<ul>
+<li>PPPoE拨号</li>
+<li>IPv6网络</li>
+<li>IPTV收看和转单播</li>
+<li>DNS防污染和加密</li>
+<li>科学上网</li>
+<li>Alist网盘</li>
+<li>DDNS映射</li>
+<li>KMS服务器</li>
+<li>HomeAssistant设备跟踪</li>
+<li>Wireguard回家</li>
+</ul>
+<h2 id="准备工作🔑">准备工作🔑</h2>
+<ol>
+<li>光猫改桥接，致电10000，向客服申请下，然后重启光猫即可；</li>
+<li>刷入OpenWrt固件的软路由，这里使用的版本是QWRT R24.3.3；</li>
+<li>获取到拨号上网的账号和密码。</li>
+</ol>
+<h2 id="开始配置🛠️">开始配置🛠️</h2>
+<p>SSH登录路由器，输入以下代码，解锁显示科学上网</p>
+<figure class="highlight shell"><figcaption><span>Unlock SSR & OpenClash</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">echo 0xDEADBEEF &gt; /etc/config/google_fu_mode</span><br></pre></td></tr></table></figure>
+<p>以下未提及的设置均为默认：</p>
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/2024/06/28/%E8%BD%AF%E8%B7%AF%E7%94%B1%E6%8A%98%E8%85%BE%E8%AE%B0-%E4%B8%AD%E7%AF%87/#more" rel="contents">
+                阅读全文 &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
     <link itemprop="mainEntityOfPage" href="https://mikal.github.io/2024/06/26/%E8%BD%AF%E8%B7%AF%E7%94%B1%E6%8A%98%E8%85%BE%E8%AE%B0-%E4%B8%8A%E7%AF%87/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -189,7 +292,7 @@
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2024-06-27 18:30:08" itemprop="dateModified" datetime="2024-06-27T18:30:08+08:00">2024-06-27</time>
+                <time title="修改时间：2024-06-28 14:55:05" itemprop="dateModified" datetime="2024-06-28T14:55:05+08:00">2024-06-28</time>
               </span>
 
           <br>
@@ -198,7 +301,7 @@
                 <i class="far fa-file-word"></i>
               </span>
                 <span class="post-meta-item-text">本文字数：</span>
-              <span>1k</span>
+              <span>1.2k</span>
             </span>
             <span class="post-meta-item" title="阅读时长">
               <span class="post-meta-item-icon">
@@ -218,7 +321,7 @@
 
       
           <h2 id="前言：">前言：</h2>
-<p>路由器的折腾最早从小米路由器3开始，刷Pandavan，送给亲戚了仍在服役；然后是Netgear R7000刷梅林，如今的千兆家宽仍能跑满速，平时吃灰作为备机；再接着换成360v6，刷OpenWrt，随着功能叠加512内存捉襟见肘，更是因为天热CPU温度快压不住了。于是，就有了今天文章的主角–<strong>友善R5s-LST版</strong>。</p>
+<p>大家好，今天来聊聊我的路由器折腾史。起初，我被小米路由器3的魔力所吸引，刷入了Pandavan，然后把它送给了亲戚，没想到它还在忠诚地服役！接着，我尝试了Netgear R7000，搭配梅林固件，它能在千兆家宽里上跑得飞快，平时就躺在角落里吃灰，充当我的备机。然后，就遇到了360v6，刷入了OpenWrt，但随着功能不断增加，512MB的内存开始显得力不从心，再加上夏天CPU的温度飙升，让我不得不考虑换它。于是，今天的主角——<strong>友善R5s-LST版</strong>，闪亮登场！</p>
           <!--noindex-->
             <div class="post-button">
               <a class="btn" href="/2024/06/26/%E8%BD%AF%E8%B7%AF%E7%94%B1%E6%8A%98%E8%85%BE%E8%AE%B0-%E4%B8%8A%E7%AF%87/#more" rel="contents">
@@ -396,14 +499,14 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">2</span>
+          <span class="site-state-item-count">3</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
       <div class="site-state-item site-state-tags">
             <a href="/tags/">
           
-        <span class="site-state-item-count">2</span>
+        <span class="site-state-item-count">4</span>
         <span class="site-state-item-name">标签</span></a>
       </div>
   </nav>

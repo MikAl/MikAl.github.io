@@ -17,20 +17,20 @@
 
 <script id="hexo-configurations">
     var NexT = window.NexT || {};
-    var CONFIG = {"hostname":"mikal.github.io","root":"/","scheme":"Muse","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"search.xml"};
+    var CONFIG = {"hostname":"mikal.github.io","root":"/","scheme":"Muse","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":true,"show_result":true,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"search.xml"};
   </script>
 
-  <meta name="description" content="前言： 路由器的折腾最早从小米路由器3开始，刷Pandavan，送给亲戚了仍在服役；然后是Netgear R7000刷梅林，如今的千兆家宽仍能跑满速，平时吃灰作为备机；再接着换成360v6，刷OpenWrt，随着功能叠加512内存捉襟见肘，更是因为天热CPU温度快压不住了。于是，就有了今天文章的主角–友善R5s-LST版。">
+  <meta name="description" content="前言： 大家好，今天来聊聊我的路由器折腾史。起初，我被小米路由器3的魔力所吸引，刷入了Pandavan，然后把它送给了亲戚，没想到它还在忠诚地服役！接着，我尝试了Netgear R7000，搭配梅林固件，它能在千兆家宽里上跑得飞快，平时就躺在角落里吃灰，充当我的备机。然后，就遇到了360v6，刷入了OpenWrt，但随着功能不断增加，512MB的内存开始显得力不从心，再加上夏天CPU的温度飙升，让">
 <meta property="og:type" content="article">
 <meta property="og:title" content="软路由折腾记-上篇">
 <meta property="og:url" content="https://mikal.github.io/2024/06/26/%E8%BD%AF%E8%B7%AF%E7%94%B1%E6%8A%98%E8%85%BE%E8%AE%B0-%E4%B8%8A%E7%AF%87/index.html">
 <meta property="og:site_name" content="Mike White&#39;s Space">
-<meta property="og:description" content="前言： 路由器的折腾最早从小米路由器3开始，刷Pandavan，送给亲戚了仍在服役；然后是Netgear R7000刷梅林，如今的千兆家宽仍能跑满速，平时吃灰作为备机；再接着换成360v6，刷OpenWrt，随着功能叠加512内存捉襟见肘，更是因为天热CPU温度快压不住了。于是，就有了今天文章的主角–友善R5s-LST版。">
+<meta property="og:description" content="前言： 大家好，今天来聊聊我的路由器折腾史。起初，我被小米路由器3的魔力所吸引，刷入了Pandavan，然后把它送给了亲戚，没想到它还在忠诚地服役！接着，我尝试了Netgear R7000，搭配梅林固件，它能在千兆家宽里上跑得飞快，平时就躺在角落里吃灰，充当我的备机。然后，就遇到了360v6，刷入了OpenWrt，但随着功能不断增加，512MB的内存开始显得力不从心，再加上夏天CPU的温度飙升，让">
 <meta property="og:locale" content="zh_CN">
 <meta property="og:image" content="https://mikal.github.io/2024/06/26/%E8%BD%AF%E8%B7%AF%E7%94%B1%E6%8A%98%E8%85%BE%E8%AE%B0-%E4%B8%8A%E7%AF%87/image.png">
 <meta property="og:image" content="https://mikal.github.io/2024/06/26/%E8%BD%AF%E8%B7%AF%E7%94%B1%E6%8A%98%E8%85%BE%E8%AE%B0-%E4%B8%8A%E7%AF%87/image-1.png">
 <meta property="article:published_time" content="2024-06-26T07:48:47.000Z">
-<meta property="article:modified_time" content="2024-06-27T10:30:08.574Z">
+<meta property="article:modified_time" content="2024-06-28T06:55:05.250Z">
 <meta property="article:author" content="MikeW">
 <meta property="article:tag" content="软路由">
 <meta property="article:tag" content="OpenWrt">
@@ -196,7 +196,7 @@
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2024-06-27 18:30:08" itemprop="dateModified" datetime="2024-06-27T18:30:08+08:00">2024-06-27</time>
+                <time title="修改时间：2024-06-28 14:55:05" itemprop="dateModified" datetime="2024-06-28T14:55:05+08:00">2024-06-28</time>
               </span>
 
           <br>
@@ -205,7 +205,7 @@
                 <i class="far fa-file-word"></i>
               </span>
                 <span class="post-meta-item-text">本文字数：</span>
-              <span>1k</span>
+              <span>1.2k</span>
             </span>
             <span class="post-meta-item" title="阅读时长">
               <span class="post-meta-item-icon">
@@ -225,18 +225,20 @@
 
       
         <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/hint.css/2.4.1/hint.min.css"><h2 id="前言：">前言：</h2>
-<p>路由器的折腾最早从小米路由器3开始，刷Pandavan，送给亲戚了仍在服役；然后是Netgear R7000刷梅林，如今的千兆家宽仍能跑满速，平时吃灰作为备机；再接着换成360v6，刷OpenWrt，随着功能叠加512内存捉襟见肘，更是因为天热CPU温度快压不住了。于是，就有了今天文章的主角–<strong>友善R5s-LST版</strong>。</p>
+<p>大家好，今天来聊聊我的路由器折腾史。起初，我被小米路由器3的魔力所吸引，刷入了Pandavan，然后把它送给了亲戚，没想到它还在忠诚地服役！接着，我尝试了Netgear R7000，搭配梅林固件，它能在千兆家宽里上跑得飞快，平时就躺在角落里吃灰，充当我的备机。然后，就遇到了360v6，刷入了OpenWrt，但随着功能不断增加，512MB的内存开始显得力不从心，再加上夏天CPU的温度飙升，让我不得不考虑换它。于是，今天的主角——<strong>友善R5s-LST版</strong>，闪亮登场！</p>
 <span id="more"></span>
-<h2 id="硬件挑选考量：">硬件挑选考量：</h2>
-<ol>
-<li>至少3+的网口数量，不带WiFi，满足千兆网络</li>
-<li>控温出色，噪音低，外形足够小巧，放入弱电箱</li>
-<li>固件选择丰富，更新频率快，有大佬加持的固件，比如Lean版本（此处有坑，后文会补充）</li>
-<li>运存2G+，能扛起360v6内所有服务，并流畅稳定</li>
-<li>预算在500块以内，优先考虑海鲜市场看了各种测评，并为今后升级留有余量，斥资近6百大洋，购入4G版本的R5s LTS。对比以上的需求，这款软路由性能是有溢出的，但为了今后的折腾之路走得更顺畅。</li>
-</ol>
-<h2 id="开始刷机：">开始刷机：</h2>
-<p>我从马粑粑家上购买，到手后是没有安装OS系统的，访问<a target="_blank" rel="noopener" href="http://download.friendlyelec.com/NanoPiR5S">官方下载地址</a>，先刷入官方的FriendlyWrt。我没有某度的网盘会员，那就选择GoogleDrive🤣，下载固件rk3568-usb-friendlywrt-23.05-20240606.zip。</p>
+<h2 id="硬件挑选法则🛠️">硬件挑选法则🛠️</h2>
+<ul>
+<li><strong>网口数量</strong>：至少3个，不带WiFi，确保千兆网络的畅通无阻；</li>
+<li><strong>控温与噪音</strong>：要出色，要低，像夜深人静时的微风；</li>
+<li><strong>外形</strong>：小巧玲珑，能轻松藏进弱电箱，不占空间；</li>
+<li><strong>固件</strong>：选择多，更新快，有大佬加持的固件，比如Lean版本；</li>
+<li><strong>运存</strong>：2G起步，能承载之前360v6的所有服务，且有后续升级的空间；</li>
+<li><strong>预算</strong>：500块以内，新或旧的都可以；</li>
+</ul>
+<p>经过深思熟虑和翻阅各种测评，决定投资近600大洋，选择了这款4G内存的R5s。虽然与以上列出的需求相比，这款软路由的性能似乎有些过剩，但相信，这小小的过剩将为今后的折腾之旅铺平道路。</p>
+<h2 id="开始刷机🔧">开始刷机🔧</h2>
+<p>我从马粑粑家淘来的，到手后是没有安装OS系统的，访问<a target="_blank" rel="noopener" href="http://download.friendlyelec.com/NanoPiR5S">官方下载地址</a>，先刷入官方的FriendlyWrt。选择GoogleDrive（因为某度网盘会员太贵🤣），下载了固件rk3568-usb-friendlywrt-23.05-20240606.zip。</p>
 <h3 id="刷机前准备：">刷机前准备：</h3>
 <ol>
 <li>USB公对公数据线</li>
@@ -245,19 +247,14 @@
 </ol>
 <h3 id="USB烧写步骤-sup-id-fnref-1-a-href-fn-1-rel-footnote-span-class-hint-top-hint-error-hint-medium-hint-rounded-hint-bounce-aria-label-详情参考友善官网“-通过USB烧写-https-wiki-friendlyelec-com-wiki-index-php-NanoPi-R5S-zh-E6-96-B9-E6-B3-953-E9-80-9A-E8-BF-87USB-E7-83-A7-E5-86-99-”-1-span-a-sup">USB烧写步骤<sup id="fnref:1"><a href="#fn:1" rel="footnote"><span class="hint--top hint--error hint--medium hint--rounded hint--bounce" aria-label="详情参考友善官网“[通过USB烧写](https://wiki.friendlyelec.com/wiki/index.php/NanoPi_R5S/zh#.E6.96.B9.E6.B3.953:_.E9.80.9A.E8.BF.87USB.E7.83.A7.E5.86.99)”">[1]</span></a></sup> :</h3>
 <ol>
-<li>
-<p>移除R5s设备上的所有外设和TF卡，用卡针按住<strong>靠近HDMI接口边</strong>的Mask按键不放, 插上电源, 保持按住Mask键, 状态灯亮起3秒后即可松开；</p>
-</li>
-<li>
-<p>用USB公对公数据线，将设备与电脑进行连接, 连接方法参照下图, 需要连接靠近外侧的USB端口；<br>
-<img src="/2024/06/26/%E8%BD%AF%E8%B7%AF%E7%94%B1%E6%8A%98%E8%85%BE%E8%AE%B0-%E4%B8%8A%E7%AF%87/image.png" alt="USB Connection Diagram" loading="lazy"></p>
-</li>
-<li>
-<p>解压缩官方固件zip包，运行其中RKDevTool.exe，启动瑞芯微开发工具，界面上会显示 “发现一个Maskrom设备”, 点击界面上的“执行”按钮, 稍等片刻即可完成烧写, 完成后设备会自动重启；</p>
-</li>
+<li><strong>设备准备</strong>：移除R5s设备上的所有外设和TF卡，用卡针按住<strong>靠近HDMI接口边</strong>的Mask按键不放, 插上电源, 保持按住Mask键, 状态灯亮起3秒后即可松开；</li>
+<li><strong>连接设备</strong>：用USB公对公数据线，将设备与电脑进行连接, 连接方法参照下图, 需要连接靠近外侧的USB端口；<br>
+<img src="/2024/06/26/%E8%BD%AF%E8%B7%AF%E7%94%B1%E6%8A%98%E8%85%BE%E8%AE%B0-%E4%B8%8A%E7%AF%87/image.png" alt="USB Connection Diagram" loading="lazy"></li>
+<li><strong>烧录固件</strong>：解压缩官方固件zip包，运行其中RKDevTool.exe，启动瑞芯微开发工具，界面上会显示 “发现一个Maskrom设备”, 点击界面上的“执行”按钮, 稍等片刻即可完成烧写, 完成后设备会自动重启；<br>
+<strong>小贴士</strong>：刷完官方固件后，若要再次进入刷机模式，Mask孔的位置变了哦，现在在USB口下方，别找错地方了😉。</li>
 </ol>
-<p>此处有一个小坑：刷了官方固件后，若要再次进入刷机模式，Mask孔变成了在USB口下方的那个🤨。登陆FriendlyWrt网页，通过web版的<strong>eMMC刷机助手</strong>刷入第三方固件，我选的是Lean大佬固件<sup id="fnref:2"><a href="#fn:2" rel="footnote"><span class="hint--top hint--error hint--medium hint--rounded hint--bounce" aria-label="Lean大佬的固件性能强悍，运行稳定，温度也控制得不错，室温26度的密闭弱电箱内，CPU温度在43度左右。但是其Luci界面版本还停留在18.06，会导致某些系统界面和插件的选项显示不全。">[2]</span></a></sup>（<a target="_blank" rel="noopener" href="https://pan.baidu.com/s/10w9yoLx5aG2sW4uggXCfZA?pwd=mkgq">网盘链接在此</a>）。至此，刷固件已完成，下一篇将讲一讲我在其上会跑哪些服务和心得体会。</p>
-<p><img src="/2024/06/26/%E8%BD%AF%E8%B7%AF%E7%94%B1%E6%8A%98%E8%85%BE%E8%AE%B0-%E4%B8%8A%E7%AF%87/image-1.png" alt="Flashed Lean IMG" loading="lazy"></p>
+<p>登陆FriendlyWrt网页，通过web版的<strong>eMMC刷机助手</strong>刷入第三方固件，我选择了Lean大佬的固件<sup id="fnref:2"><a href="#fn:2" rel="footnote"><span class="hint--top hint--error hint--medium hint--rounded hint--bounce" aria-label="Lean大佬的固件性能强悍，运行稳定，温度也控制得不错，室温26度的密闭弱电箱内，CPU温度在43度左右。但是其Luci界面版本还停留在18.06，会导致某些系统界面和插件的选项显示不全。">[2]</span></a></sup>（<a target="_blank" rel="noopener" href="https://pan.baidu.com/s/10w9yoLx5aG2sW4uggXCfZA?pwd=mkgq">网盘链接在此</a>）。至此，刷机大功告成！<img src="/2024/06/26/%E8%BD%AF%E8%B7%AF%E7%94%B1%E6%8A%98%E8%85%BE%E8%AE%B0-%E4%B8%8A%E7%AF%87/image-1.png" alt="Flashed Lean IMG" loading="lazy"><br>
+下一篇文章，我将分享在R5s LTS上运行的服务和我的配置心得，敬请期待！</p>
 <div id="footnotes"><hr><div id="footnotelist"><ol style="list-style: none; padding-left: 0; margin-left: 40px"><li id="fn:1"><span style="display: inline-block; vertical-align: top; padding-right: 10px; margin-left: -40px">1.</span><span style="display: inline-block; vertical-align: top; margin-left: 10px;">详情参考友善官网“<a target="_blank" rel="noopener" href="https://wiki.friendlyelec.com/wiki/index.php/NanoPi_R5S/zh#.E6.96.B9.E6.B3.953:_.E9.80.9A.E8.BF.87USB.E7.83.A7.E5.86.99">通过USB烧写</a>”<a href="#fnref:1" rev="footnote"> ↩</a></span></li><li id="fn:2"><span style="display: inline-block; vertical-align: top; padding-right: 10px; margin-left: -40px">2.</span><span style="display: inline-block; vertical-align: top; margin-left: 10px;">Lean大佬的固件性能强悍，运行稳定，温度也控制得不错，室温26度的密闭弱电箱内，CPU温度在43度左右。但是其Luci界面版本还停留在18.06，会导致某些系统界面和插件的选项显示不全。<a href="#fnref:2" rev="footnote"> ↩</a></span></li></ol></div></div>
     </div>
 
@@ -280,7 +277,10 @@
     <a href="/2024/06/25/hello-world/" rel="prev" title="Hello World">
       <i class="fa fa-chevron-left"></i> Hello World
     </a></div>
-      <div class="post-nav-item"></div>
+      <div class="post-nav-item">
+    <a href="/2024/06/28/%E8%BD%AF%E8%B7%AF%E7%94%B1%E6%8A%98%E8%85%BE%E8%AE%B0-%E4%B8%AD%E7%AF%87/" rel="next" title="软路由折腾记-中篇">
+      软路由折腾记-中篇 <i class="fa fa-chevron-right"></i>
+    </a></div>
     </div>
       </footer>
     
@@ -339,7 +339,7 @@
 
       <!--noindex-->
       <div class="post-toc-wrap sidebar-panel">
-          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%89%8D%E8%A8%80%EF%BC%9A"><span class="nav-number">1.</span> <span class="nav-text">前言：</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%A1%AC%E4%BB%B6%E6%8C%91%E9%80%89%E8%80%83%E9%87%8F%EF%BC%9A"><span class="nav-number">2.</span> <span class="nav-text">硬件挑选考量：</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%BC%80%E5%A7%8B%E5%88%B7%E6%9C%BA%EF%BC%9A"><span class="nav-number">3.</span> <span class="nav-text">开始刷机：</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%88%B7%E6%9C%BA%E5%89%8D%E5%87%86%E5%A4%87%EF%BC%9A"><span class="nav-number">3.1.</span> <span class="nav-text">刷机前准备：</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#USB%E7%83%A7%E5%86%99%E6%AD%A5%E9%AA%A4-sup-id-fnref-1-a-href-fn-1-rel-footnote-span-class-hint-top-hint-error-hint-medium-hint-rounded-hint-bounce-aria-label-%E8%AF%A6%E6%83%85%E5%8F%82%E8%80%83%E5%8F%8B%E5%96%84%E5%AE%98%E7%BD%91%E2%80%9C-%E9%80%9A%E8%BF%87USB%E7%83%A7%E5%86%99-https-wiki-friendlyelec-com-wiki-index-php-NanoPi-R5S-zh-E6-96-B9-E6-B3-953-E9-80-9A-E8-BF-87USB-E7-83-A7-E5-86-99-%E2%80%9D-1-span-a-sup"><span class="nav-number">3.2.</span> <span class="nav-text">USB烧写步骤[1] :</span></a></li></ol></li></ol></div>
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%89%8D%E8%A8%80%EF%BC%9A"><span class="nav-number">1.</span> <span class="nav-text">前言：</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%A1%AC%E4%BB%B6%E6%8C%91%E9%80%89%E6%B3%95%E5%88%99%F0%9F%9B%A0%EF%B8%8F"><span class="nav-number">2.</span> <span class="nav-text">硬件挑选法则🛠️</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%BC%80%E5%A7%8B%E5%88%B7%E6%9C%BA%F0%9F%94%A7"><span class="nav-number">3.</span> <span class="nav-text">开始刷机🔧</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%88%B7%E6%9C%BA%E5%89%8D%E5%87%86%E5%A4%87%EF%BC%9A"><span class="nav-number">3.1.</span> <span class="nav-text">刷机前准备：</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#USB%E7%83%A7%E5%86%99%E6%AD%A5%E9%AA%A4-sup-id-fnref-1-a-href-fn-1-rel-footnote-span-class-hint-top-hint-error-hint-medium-hint-rounded-hint-bounce-aria-label-%E8%AF%A6%E6%83%85%E5%8F%82%E8%80%83%E5%8F%8B%E5%96%84%E5%AE%98%E7%BD%91%E2%80%9C-%E9%80%9A%E8%BF%87USB%E7%83%A7%E5%86%99-https-wiki-friendlyelec-com-wiki-index-php-NanoPi-R5S-zh-E6-96-B9-E6-B3-953-E9-80-9A-E8-BF-87USB-E7-83-A7-E5-86-99-%E2%80%9D-1-span-a-sup"><span class="nav-number">3.2.</span> <span class="nav-text">USB烧写步骤[1] :</span></a></li></ol></li></ol></div>
       </div>
       <!--/noindex-->
 
@@ -355,14 +355,14 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">2</span>
+          <span class="site-state-item-count">3</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
       <div class="site-state-item site-state-tags">
             <a href="/tags/">
           
-        <span class="site-state-item-count">2</span>
+        <span class="site-state-item-count">4</span>
         <span class="site-state-item-name">标签</span></a>
       </div>
   </nav>

@@ -23,18 +23,20 @@
     <title>软路由折腾记-上篇</title>
     <url>/2024/06/26/%E8%BD%AF%E8%B7%AF%E7%94%B1%E6%8A%98%E8%85%BE%E8%AE%B0-%E4%B8%8A%E7%AF%87/</url>
     <content><![CDATA[<link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/hint.css/2.4.1/hint.min.css"><h2 id="前言：">前言：</h2>
-<p>路由器的折腾最早从小米路由器3开始，刷Pandavan，送给亲戚了仍在服役；然后是Netgear R7000刷梅林，如今的千兆家宽仍能跑满速，平时吃灰作为备机；再接着换成360v6，刷OpenWrt，随着功能叠加512内存捉襟见肘，更是因为天热CPU温度快压不住了。于是，就有了今天文章的主角–<strong>友善R5s-LST版</strong>。</p>
+<p>大家好，今天来聊聊我的路由器折腾史。起初，我被小米路由器3的魔力所吸引，刷入了Pandavan，然后把它送给了亲戚，没想到它还在忠诚地服役！接着，我尝试了Netgear R7000，搭配梅林固件，它能在千兆家宽里上跑得飞快，平时就躺在角落里吃灰，充当我的备机。然后，就遇到了360v6，刷入了OpenWrt，但随着功能不断增加，512MB的内存开始显得力不从心，再加上夏天CPU的温度飙升，让我不得不考虑换它。于是，今天的主角——<strong>友善R5s-LST版</strong>，闪亮登场！</p>
 <span id="more"></span>
-<h2 id="硬件挑选考量：">硬件挑选考量：</h2>
-<ol>
-<li>至少3+的网口数量，不带WiFi，满足千兆网络</li>
-<li>控温出色，噪音低，外形足够小巧，放入弱电箱</li>
-<li>固件选择丰富，更新频率快，有大佬加持的固件，比如Lean版本（此处有坑，后文会补充）</li>
-<li>运存2G+，能扛起360v6内所有服务，并流畅稳定</li>
-<li>预算在500块以内，优先考虑海鲜市场看了各种测评，并为今后升级留有余量，斥资近6百大洋，购入4G版本的R5s LTS。对比以上的需求，这款软路由性能是有溢出的，但为了今后的折腾之路走得更顺畅。</li>
-</ol>
-<h2 id="开始刷机：">开始刷机：</h2>
-<p>我从马粑粑家上购买，到手后是没有安装OS系统的，访问<a href="http://download.friendlyelec.com/NanoPiR5S">官方下载地址</a>，先刷入官方的FriendlyWrt。我没有某度的网盘会员，那就选择GoogleDrive🤣，下载固件rk3568-usb-friendlywrt-23.05-20240606.zip。</p>
+<h2 id="硬件挑选法则🛠️">硬件挑选法则🛠️</h2>
+<ul>
+<li><strong>网口数量</strong>：至少3个，不带WiFi，确保千兆网络的畅通无阻；</li>
+<li><strong>控温与噪音</strong>：要出色，要低，像夜深人静时的微风；</li>
+<li><strong>外形</strong>：小巧玲珑，能轻松藏进弱电箱，不占空间；</li>
+<li><strong>固件</strong>：选择多，更新快，有大佬加持的固件，比如Lean版本；</li>
+<li><strong>运存</strong>：2G起步，能承载之前360v6的所有服务，且有后续升级的空间；</li>
+<li><strong>预算</strong>：500块以内，新或旧的都可以；</li>
+</ul>
+<p>经过深思熟虑和翻阅各种测评，决定投资近600大洋，选择了这款4G内存的R5s。虽然与以上列出的需求相比，这款软路由的性能似乎有些过剩，但相信，这小小的过剩将为今后的折腾之旅铺平道路。</p>
+<h2 id="开始刷机🔧">开始刷机🔧</h2>
+<p>我从马粑粑家淘来的，到手后是没有安装OS系统的，访问<a href="http://download.friendlyelec.com/NanoPiR5S">官方下载地址</a>，先刷入官方的FriendlyWrt。选择GoogleDrive（因为某度网盘会员太贵🤣），下载了固件rk3568-usb-friendlywrt-23.05-20240606.zip。</p>
 <h3 id="刷机前准备：">刷机前准备：</h3>
 <ol>
 <li>USB公对公数据线</li>
@@ -43,23 +45,94 @@
 </ol>
 <h3 id="USB烧写步骤-sup-id-fnref-1-a-href-fn-1-rel-footnote-span-class-hint-top-hint-error-hint-medium-hint-rounded-hint-bounce-aria-label-详情参考友善官网“-通过USB烧写-https-wiki-friendlyelec-com-wiki-index-php-NanoPi-R5S-zh-E6-96-B9-E6-B3-953-E9-80-9A-E8-BF-87USB-E7-83-A7-E5-86-99-”-1-span-a-sup">USB烧写步骤<sup id="fnref:1"><a href="#fn:1" rel="footnote"><span class="hint--top hint--error hint--medium hint--rounded hint--bounce" aria-label="详情参考友善官网“[通过USB烧写](https://wiki.friendlyelec.com/wiki/index.php/NanoPi_R5S/zh#.E6.96.B9.E6.B3.953:_.E9.80.9A.E8.BF.87USB.E7.83.A7.E5.86.99)”">[1]</span></a></sup> :</h3>
 <ol>
-<li>
-<p>移除R5s设备上的所有外设和TF卡，用卡针按住<strong>靠近HDMI接口边</strong>的Mask按键不放, 插上电源, 保持按住Mask键, 状态灯亮起3秒后即可松开；</p>
-</li>
-<li>
-<p>用USB公对公数据线，将设备与电脑进行连接, 连接方法参照下图, 需要连接靠近外侧的USB端口；<br>
-<img src="/2024/06/26/%E8%BD%AF%E8%B7%AF%E7%94%B1%E6%8A%98%E8%85%BE%E8%AE%B0-%E4%B8%8A%E7%AF%87/image.png" alt="USB Connection Diagram" loading="lazy"></p>
-</li>
-<li>
-<p>解压缩官方固件zip包，运行其中RKDevTool.exe，启动瑞芯微开发工具，界面上会显示 “发现一个Maskrom设备”, 点击界面上的“执行”按钮, 稍等片刻即可完成烧写, 完成后设备会自动重启；</p>
-</li>
+<li><strong>设备准备</strong>：移除R5s设备上的所有外设和TF卡，用卡针按住<strong>靠近HDMI接口边</strong>的Mask按键不放, 插上电源, 保持按住Mask键, 状态灯亮起3秒后即可松开；</li>
+<li><strong>连接设备</strong>：用USB公对公数据线，将设备与电脑进行连接, 连接方法参照下图, 需要连接靠近外侧的USB端口；<br>
+<img src="/2024/06/26/%E8%BD%AF%E8%B7%AF%E7%94%B1%E6%8A%98%E8%85%BE%E8%AE%B0-%E4%B8%8A%E7%AF%87/image.png" alt="USB Connection Diagram" loading="lazy"></li>
+<li><strong>烧录固件</strong>：解压缩官方固件zip包，运行其中RKDevTool.exe，启动瑞芯微开发工具，界面上会显示 “发现一个Maskrom设备”, 点击界面上的“执行”按钮, 稍等片刻即可完成烧写, 完成后设备会自动重启；<br>
+<strong>小贴士</strong>：刷完官方固件后，若要再次进入刷机模式，Mask孔的位置变了哦，现在在USB口下方，别找错地方了😉。</li>
 </ol>
-<p>此处有一个小坑：刷了官方固件后，若要再次进入刷机模式，Mask孔变成了在USB口下方的那个🤨。登陆FriendlyWrt网页，通过web版的<strong>eMMC刷机助手</strong>刷入第三方固件，我选的是Lean大佬固件<sup id="fnref:2"><a href="#fn:2" rel="footnote"><span class="hint--top hint--error hint--medium hint--rounded hint--bounce" aria-label="Lean大佬的固件性能强悍，运行稳定，温度也控制得不错，室温26度的密闭弱电箱内，CPU温度在43度左右。但是其Luci界面版本还停留在18.06，会导致某些系统界面和插件的选项显示不全。">[2]</span></a></sup>（<a href="https://pan.baidu.com/s/10w9yoLx5aG2sW4uggXCfZA?pwd=mkgq">网盘链接在此</a>）。至此，刷固件已完成，下一篇将讲一讲我在其上会跑哪些服务和心得体会。</p>
-<p><img src="/2024/06/26/%E8%BD%AF%E8%B7%AF%E7%94%B1%E6%8A%98%E8%85%BE%E8%AE%B0-%E4%B8%8A%E7%AF%87/image-1.png" alt="Flashed Lean IMG" loading="lazy"></p>
+<p>登陆FriendlyWrt网页，通过web版的<strong>eMMC刷机助手</strong>刷入第三方固件，我选择了Lean大佬的固件<sup id="fnref:2"><a href="#fn:2" rel="footnote"><span class="hint--top hint--error hint--medium hint--rounded hint--bounce" aria-label="Lean大佬的固件性能强悍，运行稳定，温度也控制得不错，室温26度的密闭弱电箱内，CPU温度在43度左右。但是其Luci界面版本还停留在18.06，会导致某些系统界面和插件的选项显示不全。">[2]</span></a></sup>（<a href="https://pan.baidu.com/s/10w9yoLx5aG2sW4uggXCfZA?pwd=mkgq">网盘链接在此</a>）。至此，刷机大功告成！<img src="/2024/06/26/%E8%BD%AF%E8%B7%AF%E7%94%B1%E6%8A%98%E8%85%BE%E8%AE%B0-%E4%B8%8A%E7%AF%87/image-1.png" alt="Flashed Lean IMG" loading="lazy"><br>
+下一篇文章，我将分享在R5s LTS上运行的服务和我的配置心得，敬请期待！</p>
 <div id="footnotes"><hr><div id="footnotelist"><ol style="list-style: none; padding-left: 0; margin-left: 40px"><li id="fn:1"><span style="display: inline-block; vertical-align: top; padding-right: 10px; margin-left: -40px">1.</span><span style="display: inline-block; vertical-align: top; margin-left: 10px;">详情参考友善官网“<a href="https://wiki.friendlyelec.com/wiki/index.php/NanoPi_R5S/zh#.E6.96.B9.E6.B3.953:_.E9.80.9A.E8.BF.87USB.E7.83.A7.E5.86.99">通过USB烧写</a>”<a href="#fnref:1" rev="footnote"> ↩</a></span></li><li id="fn:2"><span style="display: inline-block; vertical-align: top; padding-right: 10px; margin-left: -40px">2.</span><span style="display: inline-block; vertical-align: top; margin-left: 10px;">Lean大佬的固件性能强悍，运行稳定，温度也控制得不错，室温26度的密闭弱电箱内，CPU温度在43度左右。但是其Luci界面版本还停留在18.06，会导致某些系统界面和插件的选项显示不全。<a href="#fnref:2" rev="footnote"> ↩</a></span></li></ol></div></div>]]></content>
       <tags>
         <tag>软路由</tag>
         <tag>OpenWrt</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>软路由折腾记-中篇</title>
+    <url>/2024/06/28/%E8%BD%AF%E8%B7%AF%E7%94%B1%E6%8A%98%E8%85%BE%E8%AE%B0-%E4%B8%AD%E7%AF%87/</url>
+    <content><![CDATA[<link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/hint.css/2.4.1/hint.min.css"><p>书接上文，这篇将主要阐明在路由器里运行哪些服务和插件，并重点记录下魔都IPv6网络和IPTV收看的配置要点。</p>
+<h2 id="服务和插件🌟">服务和插件🌟</h2>
+<ul>
+<li>PPPoE拨号</li>
+<li>IPv6网络</li>
+<li>IPTV收看和转单播</li>
+<li>DNS防污染和加密</li>
+<li>科学上网</li>
+<li>Alist网盘</li>
+<li>DDNS映射</li>
+<li>KMS服务器</li>
+<li>HomeAssistant设备跟踪</li>
+<li>Wireguard回家</li>
+</ul>
+<h2 id="准备工作🔑">准备工作🔑</h2>
+<ol>
+<li>光猫改桥接，致电10000，向客服申请下，然后重启光猫即可；</li>
+<li>刷入OpenWrt固件的软路由，这里使用的版本是QWRT R24.3.3；</li>
+<li>获取到拨号上网的账号和密码。</li>
+</ol>
+<h2 id="开始配置🛠️">开始配置🛠️</h2>
+<p>SSH登录路由器，输入以下代码，解锁显示科学上网</p>
+<figure class="highlight shell"><figcaption><span>Unlock SSR & OpenClash</span></figcaption><table><tr><td class="code"><pre><span class="line">echo 0xDEADBEEF &gt; /etc/config/google_fu_mode</span><br></pre></td></tr></table></figure>
+<p>以下未提及的设置均为默认：</p>
+<h3 id="修改WAN口配置">修改WAN口配置</h3>
+<p>协议：PPPoE<br>
+设备：eth0（本人eth0连光猫，请以自己实际情况为准）开机自动运行：勾选<br>
+PAP/CHAP 用户名：PPPoE账号<br>
+PAP/CHAP 密码：PPPoE密码高级设置-获取 IPv6 地址：手动（不自动生成Wan6，使用固定的Wan6接口。）</p>
+<h3 id="配置WAN6接口：">配置WAN6接口：</h3>
+<p>协议：DHCPv6客户端开机自动运行：勾选请求IPv6地址：try<br>
+请求指定长度的IPv6前缀：自动物理设置-自定义接口：pppoe-wan</p>
+<h3 id="配置LAN接口：">配置LAN接口：</h3>
+<p>物理设置-启用 IGMP 嗅探：✔ （<span style="color: red;">后续IPTV配置需要</span>）<br>
+IPv6 分配长度：60 （请以自己实际情况为准）<br>
+DHCP服务器-IPv6设置：前三项“混合模式”<br>
+DHCP服务器-IPv6设置-DHCPv6模式：无状态的+有状态的<br>
+<img src="/2024/06/28/%E8%BD%AF%E8%B7%AF%E7%94%B1%E6%8A%98%E8%85%BE%E8%AE%B0-%E4%B8%AD%E7%AF%87/image.png" alt="alt text" loading="lazy"></p>
+<p>至此已经可以<strong>正常访问内外网</strong>🎉，并有了IPv6网络环境。</p>
+<h2 id="配置IPTV📺">配置IPTV📺</h2>
+<h3 id="添加IPTV85接口">添加IPTV85接口</h3>
+<p>名称：iptv85<br>
+协议：DHCP客户端桥接：✔<br>
+自定义接口：eth0.85, eth1.85, eth2.85（添加所有端口的VLAN方便盲插IPTV）开机自动运行：✔<br>
+高级设置-使用默认网关：✔<br>
+高级设置-使用网关跃点：20（大于0即可）防火墙设置-创建/分配防火墙区域：lan</p>
+<h3 id="添加IPTV51接口">添加IPTV51接口</h3>
+<p>名称：iptv51<br>
+协议：不配置协议桥接：✔<br>
+自定义接口：eth0.51, eth1.51, eth2.51（回看要用到vlan，不确定是否有用，加不加都可以）防火墙设置-创建/分配防火墙区域：lan</p>
+<h3 id="修改dnsmasq-conf">修改dnsmasq.conf</h3>
+<p>SSH远程到路由器，修改/etc/dnsmasq.conf文件，添加以下内容并保存。</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">dhcp-option-force=125,00:00:00:00:1a:02:06:48:47:57:2d:43:54:03:04:5a:58:48:4e:0a:02:20:00:0b:02:00:55:0d:02:00:2e</span><br><span class="line">dhcp-option=15</span><br><span class="line">dhcp-option=28</span><br><span class="line">dhcp-option=60,00:00:01:06:68:75:61:71:69:6E:02:0A:48:47:55:34:32:31:4E:20:76:33:03:0A:48:47:55:34:32:31:4E:20:76:33:04:10:32:30:30:2E:55:59:59:2E:30:2E:41:2E:30:2E:53:48:05:04:00:01:00:50</span><br></pre></td></tr></table></figure>
+<p>至此，IPTV机顶盒已经可以使用了，<strong>直播和回放</strong>均正常。</p>
+<h3 id="强制IGMPv2">强制IGMPv2</h3>
+<p>修改/etc/sysctl.conf 文件，添加以下内容保存，强制使用IGMPv2，<span style="color: red;">可以不开IPTV机顶盒也能播放</span></p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">net.ipv4.conf.all.force_igmp_version=2</span><br></pre></td></tr></table></figure>
+<h3 id="设置MSDL插件">设置MSDL插件</h3>
+<p>配置Multi Stream Daemon Lite，这款插件据称比udpxy更省运行资源。启用：✔<br>
+端口：4022<br>
+上游VLAN接口：br-iptv85（Vlan接口请根据实际情况调整）<br>
+<img src="/2024/06/28/%E8%BD%AF%E8%B7%AF%E7%94%B1%E6%8A%98%E8%85%BE%E8%AE%B0-%E4%B8%AD%E7%AF%87/image-msdl.png" alt="alt text" loading="lazy"></p>
+<p>到了这里，组播转单播也工作了，根据你自己软路由的IP地址，更新这个<a href="https://pan.baidu.com/s/1cGbKRzjKfUPVEA3K74Y0Eg?pwd=cbn5">m3u文件</a>，即将<em>192.168.50.254</em>批量替换掉。</p>
+<h2 id="便捷配置🔄">便捷配置🔄</h2>
+<p>若你正好也正巧也是使用同款固件或者Lean大佬的其他版本，可以根据自身硬件修改以下配置文件，保存后重启设备生效。</p>
+<p><span style="color: red;"> vi /etc/config/network </span></p>
+<figure class="highlight shell"><figcaption><span>network</span></figcaption><table><tr><td class="code"><pre><span class="line">config interface &#x27;loopback&#x27;</span><br><span class="line">        option ifname &#x27;lo&#x27;</span><br><span class="line">        option proto &#x27;static&#x27;</span><br><span class="line">        option ipaddr &#x27;127.0.0.1&#x27;</span><br><span class="line">        option netmask &#x27;255.0.0.0&#x27;</span><br><span class="line"></span><br><span class="line">config interface &#x27;lan&#x27;</span><br><span class="line">        option type &#x27;bridge&#x27;</span><br><span class="line">        option ifname &#x27;eth1 eth2&#x27;</span><br><span class="line">        option proto &#x27;static&#x27;</span><br><span class="line">        option netmask &#x27;255.255.255.0&#x27;</span><br><span class="line">        option ip6assign &#x27;60&#x27;</span><br><span class="line">        option delegate &#x27;0&#x27;</span><br><span class="line">        option ipaddr &#x27;192.168.50.1&#x27;</span><br><span class="line">        option igmp_snooping &#x27;1&#x27;</span><br><span class="line"></span><br><span class="line">config interface &#x27;wan&#x27;</span><br><span class="line">        option ifname &#x27;eth0&#x27;</span><br><span class="line">        option _orig_ifname &#x27;eth0&#x27;</span><br><span class="line">        option _orig_bridge &#x27;false&#x27;</span><br><span class="line">        option proto &#x27;pppoe&#x27;</span><br><span class="line">        option username &#x27;ad1234&#x27;</span><br><span class="line">        option password &#x27;12345678&#x27;</span><br><span class="line">        option keepalive &#x27;0&#x27;</span><br><span class="line">        option ipv6 &#x27;1&#x27;</span><br><span class="line">		</span><br><span class="line">config interface &#x27;wan6&#x27;                                                  </span><br><span class="line">        option ifname &#x27;pppoe-wan&#x27;                                        </span><br><span class="line">        option _orig_ifname &#x27;pppoe-wan&#x27;                                  </span><br><span class="line">        option _orig_bridge &#x27;false&#x27;                                      </span><br><span class="line">        option proto &#x27;dhcpv6&#x27;                                            </span><br><span class="line">        option reqaddress &#x27;try&#x27;                                          </span><br><span class="line">        option reqprefix &#x27;auto&#x27;  		</span><br><span class="line">		</span><br><span class="line">config interface &#x27;IPTV85&#x27;                            </span><br><span class="line">        option type &#x27;bridge&#x27;                         </span><br><span class="line">        option proto &#x27;dhcp&#x27;                          </span><br><span class="line">        option hostname &#x27;zte&#x27;                        </span><br><span class="line">        option metric &#x27;20&#x27;                               </span><br><span class="line">        option _orig_bridge &#x27;true&#x27;                   </span><br><span class="line">        option ifname &#x27;eth0.85 eth1.85 eth2.85&#x27;                          </span><br><span class="line">        option _orig_ifname &#x27;eth0.85 eth1.85 eth2.85&#x27;                    </span><br><span class="line">        option broadcast &#x27;1&#x27;                                             </span><br><span class="line">                                                                         </span><br><span class="line">config interface &#x27;IPTV51&#x27;                                                </span><br><span class="line">        option type &#x27;bridge&#x27;                                             </span><br><span class="line">        option proto &#x27;none&#x27;                                              </span><br><span class="line">        option auto &#x27;1&#x27;                                                  </span><br><span class="line">        option _orig_ifname &#x27;eth0.51&#x27;                                    </span><br><span class="line">        option _orig_bridge &#x27;true&#x27;                                       </span><br><span class="line">        option ifname &#x27;eth0.51 eth1.51 eth2.51&#x27;                          </span><br><span class="line">        option delegate &#x27;0&#x27;                                              </span><br><span class="line">        option igmp_snooping &#x27;1&#x27; </span><br></pre></td></tr></table></figure>]]></content>
+      <tags>
+        <tag>OpenWrt</tag>
+        <tag>IPTV</tag>
+        <tag>IPv6</tag>
       </tags>
   </entry>
 </search>
