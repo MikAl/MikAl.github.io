@@ -3,20 +3,20 @@
   <entry>
     <title>Hello World</title>
     <url>/2024/06/25/1243066710/</url>
-    <content><![CDATA[<link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/hint.css/2.4.1/hint.min.css"><p>Welcome to <a href="https://hexo.io/">Hexo</a>! This is your very first post. Check <a href="https://hexo.io/docs/">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a href="https://hexo.io/docs/troubleshooting.html">troubleshooting</a> or you can ask me on <a href="https://github.com/hexojs/hexo/issues">GitHub</a>.</p>
+    <content><![CDATA[<link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/hint.css/2.4.1/hint.min.css"><p>Welcome to <a href="https://hexo.io/" rel="external nofollow noreferrer">Hexo</a>! This is your very first post. Check <a href="https://hexo.io/docs/" rel="external nofollow noreferrer">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a href="https://hexo.io/docs/troubleshooting.html" rel="external nofollow noreferrer">troubleshooting</a> or you can ask me on <a href="https://github.com/hexojs/hexo/issues" rel="external nofollow noreferrer">GitHub</a>.</p>
 <h2 id="Quick-Start">Quick Start</h2>
 <h3 id="Create-a-new-post">Create a new post</h3>
 <figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo new <span class="string">&quot;My New Post&quot;</span></span><br></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/writing.html">Writing</a></p>
+<p>More info: <a href="https://hexo.io/docs/writing.html" rel="external nofollow noreferrer">Writing</a></p>
 <h3 id="Run-server">Run server</h3>
 <figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo server</span><br></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/server.html">Server</a></p>
+<p>More info: <a href="https://hexo.io/docs/server.html" rel="external nofollow noreferrer">Server</a></p>
 <h3 id="Generate-static-files">Generate static files</h3>
 <figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo generate</span><br></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/generating.html">Generating</a></p>
+<p>More info: <a href="https://hexo.io/docs/generating.html" rel="external nofollow noreferrer">Generating</a></p>
 <h3 id="Deploy-to-remote-sites">Deploy to remote sites</h3>
 <figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo deploy</span><br></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/one-command-deployment.html">Deployment</a></p>
+<p>More info: <a href="https://hexo.io/docs/one-command-deployment.html" rel="external nofollow noreferrer">Deployment</a></p>
 ]]></content>
   </entry>
   <entry>
@@ -36,7 +36,7 @@
 </ul>
 <p>经过深思熟虑和翻阅各种测评，决定投资近600大洋，选择了这款4G内存的R5s。虽然与以上列出的需求相比，这款软路由的性能似乎有些过剩，但相信，这小小的过剩将为今后的折腾之旅铺平道路。</p>
 <h2 id="开始刷机🔧">开始刷机🔧</h2>
-<p>我从马粑粑家淘来的，到手后是没有安装OS系统的，访问<a href="http://download.friendlyelec.com/NanoPiR5S">官方下载地址</a>，先刷入官方的FriendlyWrt。选择GoogleDrive（因为某度网盘会员太贵🤣），下载了固件rk3568-usb-friendlywrt-23.05-20240606.zip。</p>
+<p>我从马粑粑家淘来的，到手后是没有安装OS系统的，访问<a href="http://download.friendlyelec.com/NanoPiR5S" rel="external nofollow noreferrer">官方下载地址</a>，先刷入官方的FriendlyWrt。选择GoogleDrive（因为某度网盘会员太贵🤣），下载了固件rk3568-usb-friendlywrt-23.05-20240606.zip。</p>
 <h3 id="刷机前准备：">刷机前准备：</h3>
 <ol>
 <li>USB公对公数据线</li>
@@ -51,9 +51,9 @@
 <li><strong>烧录固件</strong>：解压缩官方固件zip包，运行其中RKDevTool.exe，启动瑞芯微开发工具，界面上会显示 “发现一个Maskrom设备”, 点击界面上的“执行”按钮, 稍等片刻即可完成烧写, 完成后设备会自动重启；<br>
 <strong>小贴士</strong>：刷完官方固件后，若要再次进入刷机模式，Mask孔的位置变了哦，现在在USB口下方，别找错地方了😉。</li>
 </ol>
-<p>登陆FriendlyWrt网页，通过web版的<strong>eMMC刷机助手</strong>刷入第三方固件，我选择了Lean大佬的固件<sup id="fnref:2"><a href="#fn:2" rel="footnote"><span class="hint--top hint--error hint--medium hint--rounded hint--bounce" aria-label="Lean大佬的固件性能强悍，运行稳定，温度也控制得不错，室温26度的密闭弱电箱内，CPU温度在43度左右。但是其Luci界面版本还停留在18.06，会导致某些系统界面和插件的选项显示不全。">[2]</span></a></sup>（<a href="https://pan.baidu.com/s/10w9yoLx5aG2sW4uggXCfZA?pwd=mkgq">网盘链接在此</a>）。至此，刷机大功告成！<img src="/2024/06/26/2174825710/image-1.png" alt="Flashed Lean IMG" loading="lazy"><br>
+<p>登陆FriendlyWrt网页，通过web版的<strong>eMMC刷机助手</strong>刷入第三方固件，我选择了Lean大佬的固件<sup id="fnref:2"><a href="#fn:2" rel="footnote"><span class="hint--top hint--error hint--medium hint--rounded hint--bounce" aria-label="Lean大佬的固件性能强悍，运行稳定，温度也控制得不错，室温26度的密闭弱电箱内，CPU温度在43度左右。但是其Luci界面版本还停留在18.06，会导致某些系统界面和插件的选项显示不全。">[2]</span></a></sup>（<a href="https://pan.baidu.com/s/10w9yoLx5aG2sW4uggXCfZA?pwd=mkgq" rel="external nofollow noreferrer">网盘链接在此</a>）。至此，刷机大功告成！<img src="/2024/06/26/2174825710/image-1.png" alt="Flashed Lean IMG" loading="lazy"><br>
 下一篇文章，我将分享在R5s LTS上运行的服务和我的配置心得，敬请期待！</p>
-<div id="footnotes"><hr><div id="footnotelist"><ol style="list-style: none; padding-left: 0; margin-left: 40px"><li id="fn:1"><span style="display: inline-block; vertical-align: top; padding-right: 10px; margin-left: -40px">1.</span><span style="display: inline-block; vertical-align: top; margin-left: 10px;">详情参考友善官网“<a href="https://wiki.friendlyelec.com/wiki/index.php/NanoPi_R5S/zh#.E6.96.B9.E6.B3.953:_.E9.80.9A.E8.BF.87USB.E7.83.A7.E5.86.99">通过USB烧写</a>”<a href="#fnref:1" rev="footnote"> ↩</a></span></li><li id="fn:2"><span style="display: inline-block; vertical-align: top; padding-right: 10px; margin-left: -40px">2.</span><span style="display: inline-block; vertical-align: top; margin-left: 10px;">Lean大佬的固件性能强悍，运行稳定，温度也控制得不错，室温26度的密闭弱电箱内，CPU温度在43度左右。但是其Luci界面版本还停留在18.06，会导致某些系统界面和插件的选项显示不全。<a href="#fnref:2" rev="footnote"> ↩</a></span></li></ol></div></div>]]></content>
+<div id="footnotes"><hr><div id="footnotelist"><ol style="list-style: none; padding-left: 0; margin-left: 40px"><li id="fn:1"><span style="display: inline-block; vertical-align: top; padding-right: 10px; margin-left: -40px">1.</span><span style="display: inline-block; vertical-align: top; margin-left: 10px;">详情参考友善官网“<a href="https://wiki.friendlyelec.com/wiki/index.php/NanoPi_R5S/zh#.E6.96.B9.E6.B3.953:_.E9.80.9A.E8.BF.87USB.E7.83.A7.E5.86.99" rel="external nofollow noreferrer">通过USB烧写</a>”<a href="#fnref:1" rev="footnote"> ↩</a></span></li><li id="fn:2"><span style="display: inline-block; vertical-align: top; padding-right: 10px; margin-left: -40px">2.</span><span style="display: inline-block; vertical-align: top; margin-left: 10px;">Lean大佬的固件性能强悍，运行稳定，温度也控制得不错，室温26度的密闭弱电箱内，CPU温度在43度左右。但是其Luci界面版本还停留在18.06，会导致某些系统界面和插件的选项显示不全。<a href="#fnref:2" rev="footnote"> ↩</a></span></li></ol></div></div>]]></content>
       <tags>
         <tag>软路由</tag>
         <tag>OpenWrt</tag>
@@ -112,7 +112,7 @@
 <li>DHCP服务器-IPv6设置-DHCPv6模式：无状态的+有状态的<br>
 <img src="/2024/06/28/3158614889/image.png" alt="alt text" loading="lazy"></li>
 </ul>
-<p>至此已经可以<strong>正常访问内外网</strong>🎉，并有了IPv6网络环境，可以打开<a href="https://ipw.cn/">https://ipw.cn/</a> 测试查看。</p>
+<p>至此已经可以<strong>正常访问内外网</strong>🎉，并有了IPv6网络环境，可以打开<a href="https://ipw.cn/" rel="external nofollow noreferrer">https://ipw.cn/</a> 测试查看。</p>
 <h2 id="配置IPTV📺">配置IPTV📺</h2>
 <h3 id="添加IPTV85接口">添加IPTV85接口</h3>
 <ul>
@@ -144,22 +144,22 @@
 <p><s>配置Multi Stream Daemon Lite，这款插件据称比udpxy更省运行资源。</s> 试用了一周，IPTV播放一卡一卡的，还是切换回用<span style="color: red;">udpxy</span>。</p>
 <ul>
 <li>启用：勾选</li>
-<li>状态：勾选（可通过<a href="http://ip:4022/status%EF%BC%8C%E6%9F%A5%E7%9C%8B%E8%BF%90%E8%A1%8C%E7%8A%B6%E6%80%81%EF%BC%89">http://ip:4022/status，查看运行状态）</a></li>
+<li>状态：勾选（可通过<a href="http://ip:4022/status%EF%BC%8C%E6%9F%A5%E7%9C%8B%E8%BF%90%E8%A1%8C%E7%8A%B6%E6%80%81%EF%BC%89" rel="external nofollow noreferrer">http://ip:4022/status，查看运行状态）</a></li>
 <li>Bind IP/Interface：br-lan（lan接口请根据实际情况调整）</li>
 <li>端口：4022</li>
 <li>Source IP/Interface: br-IPTV85（vlan接口请根据实际情况调整）</li>
 <li>Buffer size：2097152<br>
 <img src="/2024/06/28/3158614889/udpxy.png" alt="udpxy" loading="lazy"><br>
-到了这里，组播转单播也工作了，根据自己的网络，更新这个<a href="https://pan.baidu.com/s/1cGbKRzjKfUPVEA3K74Y0Eg?pwd=cbn5">m3u文件</a>，就是把<em>192.168.50.254</em>批量替换成你自己的路由器IP地址。</li>
+到了这里，组播转单播也工作了，根据自己的网络，更新这个<a href="https://pan.baidu.com/s/1cGbKRzjKfUPVEA3K74Y0Eg?pwd=cbn5" rel="external nofollow noreferrer">m3u文件</a>，就是把<em>192.168.50.254</em>批量替换成你自己的路由器IP地址。</li>
 </ul>
 <h2 id="便捷配置🔄">便捷配置🔄</h2>
 <p>若你正好也正巧也是使用同款固件或者Lean大佬的其他版本，可以根据自身硬件修改以下配置文件，保存后重启设备生效。</p>
 <p><span style="color: red;"> vi /etc/config/network </span></p>
 <figure class="highlight shell"><figcaption><span>network</span></figcaption><table><tr><td class="code"><pre><span class="line">config interface &#x27;loopback&#x27;</span><br><span class="line">        option ifname &#x27;lo&#x27;</span><br><span class="line">        option proto &#x27;static&#x27;</span><br><span class="line">        option ipaddr &#x27;127.0.0.1&#x27;</span><br><span class="line">        option netmask &#x27;255.0.0.0&#x27;</span><br><span class="line"></span><br><span class="line">config interface &#x27;lan&#x27;</span><br><span class="line">        option type &#x27;bridge&#x27;</span><br><span class="line">        option ifname &#x27;eth1 eth2&#x27;</span><br><span class="line">        option proto &#x27;static&#x27;</span><br><span class="line">        option netmask &#x27;255.255.255.0&#x27;</span><br><span class="line">        option ip6assign &#x27;60&#x27;</span><br><span class="line">        option delegate &#x27;0&#x27;</span><br><span class="line">        option ipaddr &#x27;192.168.50.1&#x27;</span><br><span class="line">        option igmp_snooping &#x27;1&#x27;</span><br><span class="line"></span><br><span class="line">config interface &#x27;wan&#x27;</span><br><span class="line">        option ifname &#x27;eth0&#x27;</span><br><span class="line">        option _orig_ifname &#x27;eth0&#x27;</span><br><span class="line">        option _orig_bridge &#x27;false&#x27;</span><br><span class="line">        option proto &#x27;pppoe&#x27;</span><br><span class="line">        option username &#x27;ad1234&#x27;</span><br><span class="line">        option password &#x27;12345678&#x27;</span><br><span class="line">        option keepalive &#x27;0&#x27;</span><br><span class="line">        option ipv6 &#x27;1&#x27;</span><br><span class="line">		</span><br><span class="line">config interface &#x27;wan6&#x27;                                                  </span><br><span class="line">        option ifname &#x27;pppoe-wan&#x27;                                        </span><br><span class="line">        option _orig_ifname &#x27;pppoe-wan&#x27;                                  </span><br><span class="line">        option _orig_bridge &#x27;false&#x27;                                      </span><br><span class="line">        option proto &#x27;dhcpv6&#x27;                                            </span><br><span class="line">        option reqaddress &#x27;try&#x27;                                          </span><br><span class="line">        option reqprefix &#x27;auto&#x27;  		</span><br><span class="line">		</span><br><span class="line">config interface &#x27;IPTV85&#x27;                            </span><br><span class="line">        option type &#x27;bridge&#x27;                         </span><br><span class="line">        option proto &#x27;dhcp&#x27;                          </span><br><span class="line">        option hostname &#x27;zte&#x27;                        </span><br><span class="line">        option metric &#x27;20&#x27;                               </span><br><span class="line">        option _orig_bridge &#x27;true&#x27;                   </span><br><span class="line">        option ifname &#x27;eth0.85 eth1.85 eth2.85&#x27;                          </span><br><span class="line">        option _orig_ifname &#x27;eth0.85 eth1.85 eth2.85&#x27;                    </span><br><span class="line">        option broadcast &#x27;1&#x27;                                             </span><br><span class="line">                                                                         </span><br><span class="line">config interface &#x27;IPTV51&#x27;                                                </span><br><span class="line">        option type &#x27;bridge&#x27;                                             </span><br><span class="line">        option proto &#x27;none&#x27;                                              </span><br><span class="line">        option auto &#x27;1&#x27;                                                  </span><br><span class="line">        option _orig_ifname &#x27;eth0.51&#x27;                                    </span><br><span class="line">        option _orig_bridge &#x27;true&#x27;                                       </span><br><span class="line">        option ifname &#x27;eth0.51 eth1.51 eth2.51&#x27;                          </span><br><span class="line">        option delegate &#x27;0&#x27;                                              </span><br><span class="line">        option igmp_snooping &#x27;1&#x27; </span><br></pre></td></tr></table></figure>
 <h2 id="参考文档📑">参考文档📑</h2>
-<blockquote><p><a href="https://www.right.com.cn/forum/thread-8268077-1-1.html">上海电信 猫棒/光猫桥接 OpenWrt下实现 Internet+IPTV+udpxy+VoIP</a><br>
-<a href="https://github.com/paulcx/Shanghai-Telecom-4k-iptv-with-merlin/tree/master">Shanghai-Telecom-4k-iptv-with-merlin</a><br>
-<a href="https://www.right.com.cn/forum/thread-4071391-1-1.html">上海电信光猫桥接+IPTV 配置方法.-Openwrt软路由</a></p>
+<blockquote><p><a href="https://www.right.com.cn/forum/thread-8268077-1-1.html" rel="external nofollow noreferrer">上海电信 猫棒/光猫桥接 OpenWrt下实现 Internet+IPTV+udpxy+VoIP</a><br>
+<a href="https://github.com/paulcx/Shanghai-Telecom-4k-iptv-with-merlin/tree/master" rel="external nofollow noreferrer">Shanghai-Telecom-4k-iptv-with-merlin</a><br>
+<a href="https://www.right.com.cn/forum/thread-4071391-1-1.html" rel="external nofollow noreferrer">上海电信光猫桥接+IPTV 配置方法.-Openwrt软路由</a></p>
 </blockquote>
 ]]></content>
       <tags>
