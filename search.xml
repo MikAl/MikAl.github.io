@@ -1,8 +1,27 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title>Hello World</title>
+    <url>/2024/06/25/1243066710/</url>
+    <content><![CDATA[<link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/hint.css/2.4.1/hint.min.css"><p>Welcome to <a href="https://hexo.io/">Hexo</a>! This is your very first post. Check <a href="https://hexo.io/docs/">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a href="https://hexo.io/docs/troubleshooting.html">troubleshooting</a> or you can ask me on <a href="https://github.com/hexojs/hexo/issues">GitHub</a>.</p>
+<h2 id="Quick-Start">Quick Start</h2>
+<h3 id="Create-a-new-post">Create a new post</h3>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo new <span class="string">&quot;My New Post&quot;</span></span><br></pre></td></tr></table></figure>
+<p>More info: <a href="https://hexo.io/docs/writing.html">Writing</a></p>
+<h3 id="Run-server">Run server</h3>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo server</span><br></pre></td></tr></table></figure>
+<p>More info: <a href="https://hexo.io/docs/server.html">Server</a></p>
+<h3 id="Generate-static-files">Generate static files</h3>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo generate</span><br></pre></td></tr></table></figure>
+<p>More info: <a href="https://hexo.io/docs/generating.html">Generating</a></p>
+<h3 id="Deploy-to-remote-sites">Deploy to remote sites</h3>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo deploy</span><br></pre></td></tr></table></figure>
+<p>More info: <a href="https://hexo.io/docs/one-command-deployment.html">Deployment</a></p>
+]]></content>
+  </entry>
+  <entry>
     <title>软路由折腾记-上篇</title>
-    <url>/2024/06/26/%E8%BD%AF%E8%B7%AF%E7%94%B1%E6%8A%98%E8%85%BE%E8%AE%B0-%E4%B8%8A%E7%AF%87/</url>
+    <url>/2024/06/26/2174825710/</url>
     <content><![CDATA[<link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/hint.css/2.4.1/hint.min.css"><h2 id="前言：">前言：</h2>
 <p>大家好，今天来聊聊我的路由器折腾史。起初，我被小米路由器3的魔力所吸引，刷入了Pandavan，然后把它送给了亲戚，没想到它还在忠诚地服役！接着，我尝试了Netgear R7000，搭配梅林固件，它能在千兆家宽里上跑得飞快，平时就躺在角落里吃灰，充当我的备机。然后，就遇到了360v6，刷入了OpenWrt，但随着功能不断增加，512MB的内存开始显得力不从心，再加上夏天CPU的温度飙升，让我不得不考虑换它。于是，今天的主角——<strong>友善R5s-LST版</strong>，闪亮登场！</p>
 <span id="more"></span>
@@ -28,11 +47,11 @@
 <ol>
 <li><strong>设备准备</strong>：移除R5s设备上的所有外设和TF卡，用卡针按住<strong>靠近HDMI接口边</strong>的Mask按键不放, 插上电源, 保持按住Mask键, 状态灯亮起3秒后即可松开；</li>
 <li><strong>连接设备</strong>：用USB公对公数据线，将设备与电脑进行连接, 连接方法参照下图, 需要连接靠近外侧的USB端口；<br>
-<img src="/2024/06/26/%E8%BD%AF%E8%B7%AF%E7%94%B1%E6%8A%98%E8%85%BE%E8%AE%B0-%E4%B8%8A%E7%AF%87/image.png" alt="USB Connection Diagram" loading="lazy"></li>
+<img src="/2024/06/26/2174825710/image.png" alt="USB Connection Diagram" loading="lazy"></li>
 <li><strong>烧录固件</strong>：解压缩官方固件zip包，运行其中RKDevTool.exe，启动瑞芯微开发工具，界面上会显示 “发现一个Maskrom设备”, 点击界面上的“执行”按钮, 稍等片刻即可完成烧写, 完成后设备会自动重启；<br>
 <strong>小贴士</strong>：刷完官方固件后，若要再次进入刷机模式，Mask孔的位置变了哦，现在在USB口下方，别找错地方了😉。</li>
 </ol>
-<p>登陆FriendlyWrt网页，通过web版的<strong>eMMC刷机助手</strong>刷入第三方固件，我选择了Lean大佬的固件<sup id="fnref:2"><a href="#fn:2" rel="footnote"><span class="hint--top hint--error hint--medium hint--rounded hint--bounce" aria-label="Lean大佬的固件性能强悍，运行稳定，温度也控制得不错，室温26度的密闭弱电箱内，CPU温度在43度左右。但是其Luci界面版本还停留在18.06，会导致某些系统界面和插件的选项显示不全。">[2]</span></a></sup>（<a href="https://pan.baidu.com/s/10w9yoLx5aG2sW4uggXCfZA?pwd=mkgq">网盘链接在此</a>）。至此，刷机大功告成！<img src="/2024/06/26/%E8%BD%AF%E8%B7%AF%E7%94%B1%E6%8A%98%E8%85%BE%E8%AE%B0-%E4%B8%8A%E7%AF%87/image-1.png" alt="Flashed Lean IMG" loading="lazy"><br>
+<p>登陆FriendlyWrt网页，通过web版的<strong>eMMC刷机助手</strong>刷入第三方固件，我选择了Lean大佬的固件<sup id="fnref:2"><a href="#fn:2" rel="footnote"><span class="hint--top hint--error hint--medium hint--rounded hint--bounce" aria-label="Lean大佬的固件性能强悍，运行稳定，温度也控制得不错，室温26度的密闭弱电箱内，CPU温度在43度左右。但是其Luci界面版本还停留在18.06，会导致某些系统界面和插件的选项显示不全。">[2]</span></a></sup>（<a href="https://pan.baidu.com/s/10w9yoLx5aG2sW4uggXCfZA?pwd=mkgq">网盘链接在此</a>）。至此，刷机大功告成！<img src="/2024/06/26/2174825710/image-1.png" alt="Flashed Lean IMG" loading="lazy"><br>
 下一篇文章，我将分享在R5s LTS上运行的服务和我的配置心得，敬请期待！</p>
 <div id="footnotes"><hr><div id="footnotelist"><ol style="list-style: none; padding-left: 0; margin-left: 40px"><li id="fn:1"><span style="display: inline-block; vertical-align: top; padding-right: 10px; margin-left: -40px">1.</span><span style="display: inline-block; vertical-align: top; margin-left: 10px;">详情参考友善官网“<a href="https://wiki.friendlyelec.com/wiki/index.php/NanoPi_R5S/zh#.E6.96.B9.E6.B3.953:_.E9.80.9A.E8.BF.87USB.E7.83.A7.E5.86.99">通过USB烧写</a>”<a href="#fnref:1" rev="footnote"> ↩</a></span></li><li id="fn:2"><span style="display: inline-block; vertical-align: top; padding-right: 10px; margin-left: -40px">2.</span><span style="display: inline-block; vertical-align: top; margin-left: 10px;">Lean大佬的固件性能强悍，运行稳定，温度也控制得不错，室温26度的密闭弱电箱内，CPU温度在43度左右。但是其Luci界面版本还停留在18.06，会导致某些系统界面和插件的选项显示不全。<a href="#fnref:2" rev="footnote"> ↩</a></span></li></ol></div></div>]]></content>
       <tags>
@@ -41,27 +60,8 @@
       </tags>
   </entry>
   <entry>
-    <title>Hello World</title>
-    <url>/2024/06/25/hello-world/</url>
-    <content><![CDATA[<link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/hint.css/2.4.1/hint.min.css"><p>Welcome to <a href="https://hexo.io/">Hexo</a>! This is your very first post. Check <a href="https://hexo.io/docs/">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a href="https://hexo.io/docs/troubleshooting.html">troubleshooting</a> or you can ask me on <a href="https://github.com/hexojs/hexo/issues">GitHub</a>.</p>
-<h2 id="Quick-Start">Quick Start</h2>
-<h3 id="Create-a-new-post">Create a new post</h3>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo new <span class="string">&quot;My New Post&quot;</span></span><br></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/writing.html">Writing</a></p>
-<h3 id="Run-server">Run server</h3>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo server</span><br></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/server.html">Server</a></p>
-<h3 id="Generate-static-files">Generate static files</h3>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo generate</span><br></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/generating.html">Generating</a></p>
-<h3 id="Deploy-to-remote-sites">Deploy to remote sites</h3>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo deploy</span><br></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/one-command-deployment.html">Deployment</a></p>
-]]></content>
-  </entry>
-  <entry>
     <title>软路由折腾记-中篇</title>
-    <url>/2024/06/28/%E8%BD%AF%E8%B7%AF%E7%94%B1%E6%8A%98%E8%85%BE%E8%AE%B0-%E4%B8%AD%E7%AF%87/</url>
+    <url>/2024/06/28/3158614889/</url>
     <content><![CDATA[<link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/hint.css/2.4.1/hint.min.css"><p>书接上文，这篇将主要阐明在路由器里运行哪些服务和插件，并重点记录下魔都IPv6网络和IPTV收看的配置要点。</p>
 <h2 id="服务和插件🌟">服务和插件🌟</h2>
 <ul>
@@ -110,7 +110,7 @@
 <li>IPv6 分配长度：60 （请以自己实际情况为准）</li>
 <li>DHCP服务器-IPv6设置：前三项“混合模式”</li>
 <li>DHCP服务器-IPv6设置-DHCPv6模式：无状态的+有状态的<br>
-<img src="/2024/06/28/%E8%BD%AF%E8%B7%AF%E7%94%B1%E6%8A%98%E8%85%BE%E8%AE%B0-%E4%B8%AD%E7%AF%87/image.png" alt="alt text" loading="lazy"></li>
+<img src="/2024/06/28/3158614889/image.png" alt="alt text" loading="lazy"></li>
 </ul>
 <p>至此已经可以<strong>正常访问内外网</strong>🎉，并有了IPv6网络环境，可以打开<a href="https://ipw.cn/">https://ipw.cn/</a> 测试查看。</p>
 <h2 id="配置IPTV📺">配置IPTV📺</h2>
@@ -149,7 +149,7 @@
 <li>端口：4022</li>
 <li>Source IP/Interface: br-IPTV85（vlan接口请根据实际情况调整）</li>
 <li>Buffer size：2097152<br>
-<img src="/2024/06/28/%E8%BD%AF%E8%B7%AF%E7%94%B1%E6%8A%98%E8%85%BE%E8%AE%B0-%E4%B8%AD%E7%AF%87/udpxy.png" alt="udpxy" loading="lazy"><br>
+<img src="/2024/06/28/3158614889/udpxy.png" alt="udpxy" loading="lazy"><br>
 到了这里，组播转单播也工作了，根据自己的网络，更新这个<a href="https://pan.baidu.com/s/1cGbKRzjKfUPVEA3K74Y0Eg?pwd=cbn5">m3u文件</a>，就是把<em>192.168.50.254</em>批量替换成你自己的路由器IP地址。</li>
 </ul>
 <h2 id="便捷配置🔄">便捷配置🔄</h2>
