@@ -140,15 +140,18 @@
 <h3 id="强制IGMPv2">强制IGMPv2</h3>
 <p>修改/etc/sysctl.conf 文件，添加以下内容保存，强制使用IGMPv2，<span style="color: red;">可以不开IPTV机顶盒也能播放</span></p>
 <figure class="highlight sh"><figcaption><span>sysctl.conf</span></figcaption><table><tr><td class="code"><pre><span class="line">net.ipv4.conf.all.force_igmp_version=2</span><br></pre></td></tr></table></figure>
-<h3 id="设置MSDL插件">设置MSDL插件</h3>
-<p>配置Multi Stream Daemon Lite，这款插件据称比udpxy更省运行资源。</p>
+<h3 id="设置MSDLudpxy插件">设置<s>MSDL</s>udpxy插件</h3>
+<p><s>配置Multi Stream Daemon Lite，这款插件据称比udpxy更省运行资源。</s> 试用了一周，IPTV播放一卡一卡的，还是切换回用<span style="color: red;">udpxy</span>。</p>
 <ul>
 <li>启用：勾选</li>
+<li>状态：勾选（可通过<a href="http://ip:4022/status%EF%BC%8C%E6%9F%A5%E7%9C%8B%E8%BF%90%E8%A1%8C%E7%8A%B6%E6%80%81%EF%BC%89">http://ip:4022/status，查看运行状态）</a></li>
+<li>Bind IP/Interface：br-lan（lan接口请根据实际情况调整）</li>
 <li>端口：4022</li>
-<li>上游VLAN接口：br-iptv85（Vlan接口请根据实际情况调整）<br>
-<img src="/2024/06/28/%E8%BD%AF%E8%B7%AF%E7%94%B1%E6%8A%98%E8%85%BE%E8%AE%B0-%E4%B8%AD%E7%AF%87/image-msdl.png" alt="alt text" loading="lazy"></li>
+<li>Source IP/Interface: br-IPTV85（vlan接口请根据实际情况调整）</li>
+<li>Buffer size：2097152<br>
+<img src="/2024/06/28/%E8%BD%AF%E8%B7%AF%E7%94%B1%E6%8A%98%E8%85%BE%E8%AE%B0-%E4%B8%AD%E7%AF%87/udpxy.png" alt="udpxy" loading="lazy"><br>
+到了这里，组播转单播也工作了，根据自己的网络，更新这个<a href="https://pan.baidu.com/s/1cGbKRzjKfUPVEA3K74Y0Eg?pwd=cbn5">m3u文件</a>，就是把<em>192.168.50.254</em>批量替换成你自己的路由器IP地址。</li>
 </ul>
-<p>到了这里，组播转单播也工作了，根据自己的网络，更新这个<a href="https://pan.baidu.com/s/1cGbKRzjKfUPVEA3K74Y0Eg?pwd=cbn5">m3u文件</a>，就是把<em>192.168.50.254</em>批量替换成你自己的路由器IP地址。</p>
 <h2 id="便捷配置🔄">便捷配置🔄</h2>
 <p>若你正好也正巧也是使用同款固件或者Lean大佬的其他版本，可以根据自身硬件修改以下配置文件，保存后重启设备生效。</p>
 <p><span style="color: red;"> vi /etc/config/network </span></p>
