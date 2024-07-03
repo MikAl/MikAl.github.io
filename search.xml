@@ -113,7 +113,7 @@
 <li>禁用QUIC: ✔</li>
 <li>仅允许常用端口流量：默认常用端口</li>
 <li>绕过中国大陆IP：✔</li>
-<li>绕过中国大陆IPv4黑名单：（我理解的是即使该网站解析的IP识别为大陆，仍然用代理）</li>
+<li>绕过中国大陆IPv4黑名单：添加以下网站（我理解的是即使该网站解析的IP识别为大陆，仍然用代理）</li>
 </ul>
 <figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">## 方便使用Bing的Copilot</span><br><span class="line">bing.com</span><br></pre></td></tr></table></figure>
 <p><img src="/2024/07/03/958223243/op3.png" alt="alt text" loading="lazy"></p>
@@ -134,7 +134,7 @@
 <li>IPv6 代理模式：TUN模式</li>
 <li>允许 IPv6 类型 DNS 解析：✔</li>
 <li>绕过中国大陆 IPv6：✔</li>
-<li>绕过中国大陆IPv6黑名单：</li>
+<li>绕过中国大陆IPv6黑名单：添加以下网站</li>
 </ul>
 <figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">## 方便使用Bing的Copilot</span><br><span class="line">bing.com</span><br></pre></td></tr></table></figure>
 <ol start="4">
