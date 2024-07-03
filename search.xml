@@ -93,7 +93,7 @@
 <figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line"># Stop ipv6 for google,停止谷歌的ipv6解析</span><br><span class="line">#address /google.com/#6</span><br><span class="line">#address /dns.google/#6</span><br><span class="line">#DDNS pointed to internal server,将ddns域名转换成实际内网服务器ip</span><br><span class="line">address /example.example.com/192.168.xx.xx</span><br></pre></td></tr></table></figure>
 <p>至此，SmartDNS部分配置完毕。</p>
 <h2 id="OpenClash配置">OpenClash配置</h2>
-<p>先准备好订阅地址，我使用CF部署了Worker——定制汇聚订阅[CM大佬的<a href="https://github.com/cmliu/CF-Workers-SUB" rel="external nofollow noreferrer">https://github.com/cmliu/CF-Workers-SUB</a>]，将多个订阅或者节点汇聚在一起，并能加载分流规则，方便在多设备上加载配置文件。<br>
+<p>先准备好订阅地址，我使用CF通过Worker部署了定制汇聚订阅，可以将多个订阅或者节点汇聚在一起，并能加载分流规则，方便在多设备上同步配置文件。<br>
 <img src="/2024/07/03/958223243/op1.png" alt="alt text" loading="lazy"><br>
 <strong>保存配置，<span style="color: red;">不要应用</span></strong></p>
 <h3 id="插件设置">插件设置</h3>
@@ -176,6 +176,7 @@
 <li><a href="https://www.hughh.top/posts/soft-routing-guide-3/#%E4%B8%80openclash%E8%AE%BE%E7%BD%AE" rel="external nofollow noreferrer">软路由科学上网,openclash,openwrt IPv6配置</a></li>
 <li><a href="https://rushb.pro/article/router-dns.html" rel="external nofollow noreferrer">软路由与 DNS 折腾笔记</a></li>
 <li><a href="https://github.com/cutethotw/ClashRule" rel="external nofollow noreferrer">clash自用分流规则以及转换教程</a></li>
+<li><a href="https://github.com/cmliu/CF-Workers-SUB" rel="external nofollow noreferrer">CM大佬的定制汇聚订阅及视频教程</a></li>
 </ul>
 ]]></content>
       <tags>
