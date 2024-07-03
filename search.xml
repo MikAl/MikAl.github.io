@@ -1,25 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
-    <title>Hello World</title>
-    <url>/2024/06/25/1243066710/</url>
-    <content><![CDATA[<link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/hint.css/2.4.1/hint.min.css"><p>Welcome to <a href="https://hexo.io/" rel="external nofollow noreferrer">Hexo</a>! This is your very first post. Check <a href="https://hexo.io/docs/" rel="external nofollow noreferrer">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a href="https://hexo.io/docs/troubleshooting.html" rel="external nofollow noreferrer">troubleshooting</a> or you can ask me on <a href="https://github.com/hexojs/hexo/issues" rel="external nofollow noreferrer">GitHub</a>.</p>
-<h2 id="Quick-Start">Quick Start</h2>
-<h3 id="Create-a-new-post">Create a new post</h3>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo new <span class="string">&quot;My New Post&quot;</span></span><br></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/writing.html" rel="external nofollow noreferrer">Writing</a></p>
-<h3 id="Run-server">Run server</h3>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo server</span><br></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/server.html" rel="external nofollow noreferrer">Server</a></p>
-<h3 id="Generate-static-files">Generate static files</h3>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo generate</span><br></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/generating.html" rel="external nofollow noreferrer">Generating</a></p>
-<h3 id="Deploy-to-remote-sites">Deploy to remote sites</h3>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo deploy</span><br></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/one-command-deployment.html" rel="external nofollow noreferrer">Deployment</a></p>
-]]></content>
-  </entry>
-  <entry>
     <title>软路由折腾记-上篇</title>
     <url>/2024/06/26/2174825710/</url>
     <content><![CDATA[<link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/hint.css/2.4.1/hint.min.css"><h2 id="前言：">前言：</h2>
@@ -57,6 +38,152 @@
       <tags>
         <tag>软路由</tag>
         <tag>OpenWrt</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>软路由折腾记-下篇</title>
+    <url>/2024/07/03/958223243/</url>
+    <content><![CDATA[<link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/hint.css/2.4.1/hint.min.css"><p>本篇讲述，如何通过OpenClash实现IPv4和IPv6的双栈支持，并结合SmartDNS进行DNS分流和优选，可以显著提升网络体验和应用性能，并记录关键的配置要点。由于版本的不同，请根据自己的实际情况调整；✓代表勾选 ✕代表取消勾选；若未提及的设置，一般保留默认值。</p>
+<h2 id="准备">准备</h2>
+<ol>
+<li>基于NanoPi-R5s-LST版 + Lean固件QWRT-R24.02.26（R24.3.3）</li>
+<li>OpenClash, TUN内核：v1.18.0-13-gd034a40，Meta内核：alpha-g0d4e57c，客户端版本：v0.46.001-beta</li>
+<li>SmartDNS Release 45, 即1.2024.02.08-0828版本, 注意Luci需要下载<strong>luci-compat-all.ipk</strong>，才能在Web界面显示配置菜单</li>
+</ol>
+<span id="more"></span>
+<h2 id="SmartDNS配置">SmartDNS配置</h2>
+<p>在折腾过MosDNS之后，还是用回SmartDNS，使用OpenClash的白名单分流国内外DNS查询。SmartDNS 国内分组使用的端口是：6053，第二组的DNS服务器端口是：6553，注意端口号不能跟已运行的服务相冲突。DNS 上游服务器配置如下图（自动设置 Dnsmasq❌），根据官方建议，上游DNS不宜超过10个：<img src="/2024/07/03/958223243/dns0.png" alt="alt text" loading="lazy"><br>
+<img src="/2024/07/03/958223243/dns.png" alt="alt text" loading="lazy"><br>
+<em>可以参考这个网址[<a href="https://dns.icoa.cn/" rel="external nofollow noreferrer">https://dns.icoa.cn/</a>]，挑选符合自己网络的国内外DNS服务器。</em><br>
+当然，你也可以直接vi编辑&quot;/etc/config/smartdns&quot;文件，批量将DNS服务器加入(最上方Tencent作为运营商解析dns的示例)，代码如下:</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">config server</span><br><span class="line">	option enabled <span class="string">&#x27;1&#x27;</span></span><br><span class="line">	option <span class="built_in">type</span> <span class="string">&#x27;udp&#x27;</span></span><br><span class="line">	option exclude_default_group <span class="string">&#x27;1&#x27;</span></span><br><span class="line">	option addition_arg <span class="string">&#x27;-bootstrap-dns&#x27;</span></span><br><span class="line">	option ip <span class="string">&#x27;119.29.29.29&#x27;</span></span><br><span class="line">	option name <span class="string">&#x27;Tencent&#x27;</span></span><br><span class="line"></span><br><span class="line">config server</span><br><span class="line">	option enabled <span class="string">&#x27;1&#x27;</span></span><br><span class="line">	option name <span class="string">&#x27;cn-Ali-DOH&#x27;</span></span><br><span class="line">	option ip <span class="string">&#x27;https://dns.alidns.com/dns-query&#x27;</span></span><br><span class="line">	option <span class="built_in">type</span> <span class="string">&#x27;https&#x27;</span></span><br><span class="line">	option server_group <span class="string">&#x27;cn&#x27;</span></span><br><span class="line"></span><br><span class="line">config server</span><br><span class="line">	option enabled <span class="string">&#x27;1&#x27;</span></span><br><span class="line">	option name <span class="string">&#x27;cn-Ali&#x27;</span></span><br><span class="line">	option server_group <span class="string">&#x27;cn&#x27;</span></span><br><span class="line">	option ip <span class="string">&#x27;dns.alidns.com&#x27;</span></span><br><span class="line">	option <span class="built_in">type</span> <span class="string">&#x27;tls&#x27;</span></span><br><span class="line"></span><br><span class="line">config server</span><br><span class="line">	option enabled <span class="string">&#x27;1&#x27;</span></span><br><span class="line">	option name <span class="string">&#x27;cn-Tencent&#x27;</span></span><br><span class="line">	option server_group <span class="string">&#x27;cn&#x27;</span></span><br><span class="line">	option ip <span class="string">&#x27;https://doh.pub/dns-query&#x27;</span></span><br><span class="line">	option <span class="built_in">type</span> <span class="string">&#x27;https&#x27;</span></span><br><span class="line"></span><br><span class="line">config server</span><br><span class="line">	option enabled <span class="string">&#x27;1&#x27;</span></span><br><span class="line">	option server_group <span class="string">&#x27;cn&#x27;</span></span><br><span class="line">	option name <span class="string">&#x27;cn-Tencent&#x27;</span></span><br><span class="line">	option ip <span class="string">&#x27;1.12.12.12&#x27;</span></span><br><span class="line">	option <span class="built_in">type</span> <span class="string">&#x27;tls&#x27;</span></span><br><span class="line">	option tls_host_verify <span class="string">&#x27;dot.pub&#x27;</span></span><br><span class="line"></span><br><span class="line">config server</span><br><span class="line">	option enabled <span class="string">&#x27;1&#x27;</span></span><br><span class="line">	option name <span class="string">&#x27;us-g1&#x27;</span></span><br><span class="line">	option server_group <span class="string">&#x27;us&#x27;</span></span><br><span class="line">	option exclude_default_group <span class="string">&#x27;1&#x27;</span></span><br><span class="line">	option ip <span class="string">&#x27;https://dns.google/dns-query&#x27;</span></span><br><span class="line">	option <span class="built_in">type</span> <span class="string">&#x27;https&#x27;</span></span><br><span class="line"></span><br><span class="line">config server</span><br><span class="line">	option enabled <span class="string">&#x27;1&#x27;</span></span><br><span class="line">	option name <span class="string">&#x27;us-cf2&#x27;</span></span><br><span class="line">	option <span class="built_in">type</span> <span class="string">&#x27;https&#x27;</span></span><br><span class="line">	option server_group <span class="string">&#x27;us&#x27;</span></span><br><span class="line">	option exclude_default_group <span class="string">&#x27;1&#x27;</span></span><br><span class="line">	option tls_host_verify <span class="string">&#x27;cloudflare-dns.com&#x27;</span></span><br><span class="line">	option ip <span class="string">&#x27;https://1.0.0.1/dns-query&#x27;</span></span><br><span class="line"></span><br><span class="line">config server</span><br><span class="line">	option enabled <span class="string">&#x27;1&#x27;</span></span><br><span class="line">	option <span class="built_in">type</span> <span class="string">&#x27;tls&#x27;</span></span><br><span class="line">	option server_group <span class="string">&#x27;us&#x27;</span></span><br><span class="line">	option exclude_default_group <span class="string">&#x27;1&#x27;</span></span><br><span class="line">	option name <span class="string">&#x27;us-Quad9&#x27;</span></span><br><span class="line">	option ip <span class="string">&#x27;9.9.9.9&#x27;</span></span><br><span class="line">	option tls_host_verify <span class="string">&#x27;dns.quad9.net&#x27;</span></span><br></pre></td></tr></table></figure>
+<h3 id="SmartDNS高级设置">SmartDNS高级设置</h3>
+<ul>
+<li>测速模式：默认</li>
+<li>TCP服务器：✖️</li>
+<li>DOT服务器：✖️</li>
+<li>DOH服务器：✖️</li>
+<li>IPV6服务器：✔</li>
+<li>绑定到设备：✔</li>
+<li>双栈IP优选：✔</li>
+<li>域名预加载： ✔</li>
+<li>缓存过期服务：✖️</li>
+<li>缓存大小：10000 （这个根据实际性能调整）</li>
+<li>持久化缓存：✖️</li>
+<li>解析本地主机名：✔</li>
+<li>停用IPV6地址解析：✖️</li>
+<li>停用HTTPS记录解析：✖️<br>
+<img src="/2024/07/03/958223243/dns1.png" alt="alt text" loading="lazy"><br>
+<img src="/2024/07/03/958223243/dns2.png" alt="alt text" loading="lazy"></li>
+</ul>
+<h3 id="SmartDNS第二DNS服务器">SmartDNS第二DNS服务器</h3>
+<ul>
+<li>启用：✔</li>
+<li>服务器组：us</li>
+<li>跳过测速：✔</li>
+<li>跳过双栈优选：✔</li>
+<li>跳过cache：✔</li>
+<li>停用IPV6地址解析：✔<br>
+<img src="/2024/07/03/958223243/2dns-1.png" alt="alt text" loading="lazy"></li>
+</ul>
+<h3 id="自定义配置">自定义配置</h3>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">#iOS系统解析缓慢</span><br><span class="line">force-qtype-SOA 65</span><br></pre></td></tr></table></figure>
+<h3 id="域名规则">域名规则</h3>
+<p>域名地址，添加自定义配置</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line"># Stop ipv6 for google,停止谷歌的ipv6解析</span><br><span class="line">#address /google.com/#6</span><br><span class="line">#address /dns.google/#6</span><br><span class="line">#DDNS pointed to internal server,将ddns域名转换成实际内网服务器ip</span><br><span class="line">address /example.example.com/192.168.xx.xx</span><br></pre></td></tr></table></figure>
+<p>至此，SmartDNS部分配置完毕。</p>
+<h2 id="OpenClash配置">OpenClash配置</h2>
+<p>先准备好订阅地址，我使用CF部署了Worker——定制汇聚订阅[CM大佬的<a href="https://github.com/cmliu/CF-Workers-SUB" rel="external nofollow noreferrer">https://github.com/cmliu/CF-Workers-SUB</a>]，将多个订阅或者节点汇聚在一起，并能加载分流规则，方便在多设备上加载配置文件。<br>
+<img src="/2024/07/03/958223243/op1.png" alt="alt text" loading="lazy"><br>
+<strong>保存配置，<span style="color: red;">不要应用</span></strong></p>
+<h3 id="插件设置">插件设置</h3>
+<ol>
+<li>模式设置</li>
+</ol>
+<ul>
+<li>使用 Meta 内核：✔</li>
+<li>运行模式：Redir-Host (TUN-混合)模式</li>
+<li>延迟启动（秒）：10<br>
+<img src="/2024/07/03/958223243/op2.png" alt="alt text" loading="lazy"></li>
+</ul>
+<ol start="2">
+<li>流量控制</li>
+</ol>
+<ul>
+<li>禁用QUIC: ✔</li>
+<li>仅允许常用端口流量：默认常用端口</li>
+<li>绕过中国大陆IP：✔</li>
+<li>绕过中国大陆IPv4黑名单：（我理解的是即使该网站解析的IP识别为大陆，仍然用代理）</li>
+</ul>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">## 方便使用Bing的Copilot</span><br><span class="line">bing.com</span><br></pre></td></tr></table></figure>
+<p><img src="/2024/07/03/958223243/op3.png" alt="alt text" loading="lazy"></p>
+<ol>
+<li>DNS设置</li>
+</ol>
+<ul>
+<li>本地DNS劫持：使用Dnsmasq转发</li>
+<li>禁止Dnsmasq缓存：✔</li>
+</ul>
+<ol start="2">
+<li>黑白名单：<br>
+使用黑名单，即只有添加IP或mac的设备不走代理，其他设备都走代理。<span style="color: red;">添加设备的mac效果更好，一次性把设备的IPv4和IPv6都包含其中</span></li>
+<li>IPv6设置</li>
+</ol>
+<ul>
+<li>IPv6 流量代理：✔</li>
+<li>IPv6 代理模式：TUN模式</li>
+<li>允许 IPv6 类型 DNS 解析：✔</li>
+<li>绕过中国大陆 IPv6：✔</li>
+<li>绕过中国大陆IPv6黑名单：</li>
+</ul>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">## 方便使用Bing的Copilot</span><br><span class="line">bing.com</span><br></pre></td></tr></table></figure>
+<ol start="4">
+<li>GEO数据库订阅</li>
+</ol>
+<ul>
+<li>自动更新 GeoIP Dat 数据库：✔</li>
+<li>自动更新 GeoSite 数据库：✔<br>
+避开重启的时段，选择更新时间。</li>
+</ul>
+<ol start="5">
+<li>大陆白名单订阅自动更新：✔</li>
+</ol>
+<h3 id="覆写设置">覆写设置</h3>
+<p><strong>DNS设置</strong></p>
+<ul>
+<li>自定义上游 DNS 服务器：✔</li>
+<li>追加上游DNS：×</li>
+<li>追加默认DNS：×<br>
+设置自定义上游 DNS 服务器：</li>
+<li>NameServer 和 Default-NameServer 使用127.0.0.1,6053,UDP, 即SmartDNS 第一服务器</li>
+<li>FallBack使用127.0.0.1, 6553,UDP, 即使用 SmartDNS 第二服务器<br>
+至此，SmartDNS 就会接管所有的 DNS 请求。<br>
+<img src="/2024/07/03/958223243/op4.png" alt="alt text" loading="lazy"></li>
+</ul>
+<h3 id="规则管理">规则管理</h3>
+<p>添加一个不走代理的白名单，强制这些域名走本地直连。</p>
+<ul>
+<li>规则集文件列表-&gt;新建文件，文件名为CN-Whitelist.yaml</li>
+</ul>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">payload:</span><br><span class="line">    ## &gt; Ubiquiti</span><br><span class="line">  - DOMAIN-SUFFIX,ui.com</span><br><span class="line">  - DOMAIN-SUFFIX,uwn.com</span><br></pre></td></tr></table></figure>
+<h3 id="规则附加">规则附加</h3>
+<p>添加<span style="color: blue;">自定义规则集附加</span>，顺序选择<span style="color: red;">优先（覆盖）</span>。但是我实际使用下来<em>未能生效</em>，后来还是在线分流规则中新建了<strong>国内直连</strong>的分组。<img src="/2024/07/03/958223243/op5.png" alt="alt text" loading="lazy"><br>
+在Openclash中点击<strong>保存配置</strong>并<strong>应用配置</strong>，启动其客户端后，即可正常使用。<br>
+<img src="/2024/07/03/958223243/op6.png" alt="alt text" loading="lazy"></p>
+<h2 id="参考文档">参考文档</h2>
+<ul>
+<li><a href="https://rushb.pro/article/openwrt-config.html#smartdns" rel="external nofollow noreferrer">OpenWrt 配置不完全指北</a></li>
+<li><a href="https://www.hughh.top/posts/soft-routing-guide-3/#%E4%B8%80openclash%E8%AE%BE%E7%BD%AE" rel="external nofollow noreferrer">软路由科学上网,openclash,openwrt IPv6配置</a></li>
+<li><a href="https://rushb.pro/article/router-dns.html" rel="external nofollow noreferrer">软路由与 DNS 折腾笔记</a></li>
+<li><a href="https://github.com/cutethotw/ClashRule" rel="external nofollow noreferrer">clash自用分流规则以及转换教程</a></li>
+</ul>
+]]></content>
+      <tags>
+        <tag>OpenWrt</tag>
+        <tag>OpenClash</tag>
+        <tag>SmartDNS</tag>
+        <tag>IPv6</tag>
+        <tag>DNS</tag>
       </tags>
   </entry>
   <entry>
@@ -164,8 +291,8 @@
 ]]></content>
       <tags>
         <tag>OpenWrt</tag>
-        <tag>IPTV</tag>
         <tag>IPv6</tag>
+        <tag>IPTV</tag>
       </tags>
   </entry>
 </search>
