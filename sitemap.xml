@@ -2,6 +2,15 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
+    <loc>https://mikal.github.io/2024/07/05/1099985578/</loc>
+    
+    <lastmod>2024-07-05</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
     <loc>https://mikal.github.io/2024/07/03/958223243/</loc>
     
     <lastmod>2024-07-03</lastmod>
@@ -40,57 +49,71 @@
 
   <url>
     <loc>https://mikal.github.io/</loc>
-    <lastmod>2024-07-03</lastmod>
+    <lastmod>2024-07-05</lastmod>
     <changefreq>daily</changefreq>
     <priority>1.0</priority>
   </url>
 
   
   <url>
-    <loc>https://mikal.github.io/tags/%E8%BD%AF%E8%B7%AF%E7%94%B1/</loc>
-    <lastmod>2024-07-03</lastmod>
+    <loc>https://mikal.github.io/tags/OpenWrt/</loc>
+    <lastmod>2024-07-05</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
-    <loc>https://mikal.github.io/tags/OpenWrt/</loc>
-    <lastmod>2024-07-03</lastmod>
+    <loc>https://mikal.github.io/tags/%E6%97%A5%E5%BF%97%E6%9C%8D%E5%8A%A1%E5%99%A8/</loc>
+    <lastmod>2024-07-05</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
+    <loc>https://mikal.github.io/tags/Syslog/</loc>
+    <lastmod>2024-07-05</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
+    <loc>https://mikal.github.io/tags/%E8%BD%AF%E8%B7%AF%E7%94%B1/</loc>
+    <lastmod>2024-07-05</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
     <loc>https://mikal.github.io/tags/OpenClash/</loc>
-    <lastmod>2024-07-03</lastmod>
+    <lastmod>2024-07-05</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
     <loc>https://mikal.github.io/tags/SmartDNS/</loc>
-    <lastmod>2024-07-03</lastmod>
+    <lastmod>2024-07-05</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
     <loc>https://mikal.github.io/tags/IPv6/</loc>
-    <lastmod>2024-07-03</lastmod>
+    <lastmod>2024-07-05</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
     <loc>https://mikal.github.io/tags/DNS/</loc>
-    <lastmod>2024-07-03</lastmod>
+    <lastmod>2024-07-05</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
     <loc>https://mikal.github.io/tags/IPTV/</loc>
-    <lastmod>2024-07-03</lastmod>
+    <lastmod>2024-07-05</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>

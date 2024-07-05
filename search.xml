@@ -1,6 +1,43 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title>OpenWrt发送日志到远端</title>
+    <url>/2024/07/05/1099985578/</url>
+    <content><![CDATA[<link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/hint.css/2.4.1/hint.min.css"><p>OpenWrt的日志默认都存放在/tmp中，重启之后日志文件都会被清空。本来这样没有问题，但是最近它总会在运行了36个小时左右时莫名重启，想要排查下问题。于是启用OpenWrt的远程日志记录功能，将日志输出到群晖上的Syslog服务–日志中心，以便排除原因。</p>
+<span id="more"></span>
+<h2 id="配置Syslog服务">配置Syslog服务</h2>
+<p>这里的Syslog服务是利用群晖内自带的<strong>日志中心</strong>，步骤如下：</p>
+<ol>
+<li>在日志中心 &gt; 归档设置，选择一个用于存储和归档日志的位置</li>
+<li>在日志中心 &gt; 日志接收 &gt; 创建，随便起一个名字，如OpenWrt，其他保持如下图默认即可<br>
+<img src="/2024/07/05/1099985578/nas-syslog.png" alt="alt text" loading="lazy"></li>
+<li>单击<strong>应用</strong>来保存设置<br>
+至此，在群晖上的Syslog服务配置完毕了。</li>
+</ol>
+<h2 id="配置OpenWrt">配置OpenWrt</h2>
+<ol>
+<li>在<strong>系统</strong>-&gt;<strong>系统</strong>-&gt;<strong>日志</strong>，在<strong>外部系统日志服务器地址</strong>输入上一步Syslog服务的ip地址<br>
+<img src="/2024/07/05/1099985578/op-log.png" alt="alt text" loading="lazy"></li>
+<li>点击<strong>保持并应用</strong></li>
+<li>ssh登陆到软路由中，或者网页端的TTYD，输入以下命令重启服务</li>
+</ol>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">service <span class="built_in">log</span> restart</span><br><span class="line">service system restart</span><br></pre></td></tr></table></figure>
+<p>正常情况下，等几秒即可在群晖中看到OpenWrt日志了，测试效果如下。<br>
+<img src="/2024/07/05/1099985578/log-results.png" alt="alt text" loading="lazy"></p>
+<h2 id="参考文档">参考文档</h2>
+<ol>
+<li><a href="https://www.utopiafar.com/2022/08/11/logging-network-requests-via-openwrt/" rel="external nofollow noreferrer">配置openwrt的网络请求日志</a></li>
+<li><a href="https://openwrt.org/docs/guide-user/base-system/log.essentials#logd" rel="external nofollow noreferrer">Logging messages–OpenWrt</a></li>
+<li><a href="https://kb.synology.cn/zh-cn/DSM/help/LogCenter/logcenter_server?version=7" rel="external nofollow noreferrer">群晖知识库–日志中心–接收日志</a></li>
+</ol>
+]]></content>
+      <tags>
+        <tag>OpenWrt</tag>
+        <tag>日志服务器</tag>
+        <tag>Syslog</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>软路由折腾记-上篇</title>
     <url>/2024/06/26/2174825710/</url>
     <content><![CDATA[<link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/hint.css/2.4.1/hint.min.css"><h2 id="前言：">前言：</h2>
@@ -36,8 +73,8 @@
 下一篇文章，我将分享在R5s LTS上运行的服务和我的配置心得，敬请期待！</p>
 <div id="footnotes"><hr><div id="footnotelist"><ol style="list-style: none; padding-left: 0; margin-left: 40px"><li id="fn:1"><span style="display: inline-block; vertical-align: top; padding-right: 10px; margin-left: -40px">1.</span><span style="display: inline-block; vertical-align: top; margin-left: 10px;">详情参考友善官网“<a href="https://wiki.friendlyelec.com/wiki/index.php/NanoPi_R5S/zh#.E6.96.B9.E6.B3.953:_.E9.80.9A.E8.BF.87USB.E7.83.A7.E5.86.99" rel="external nofollow noreferrer">通过USB烧写</a>”<a href="#fnref:1" rev="footnote"> ↩</a></span></li><li id="fn:2"><span style="display: inline-block; vertical-align: top; padding-right: 10px; margin-left: -40px">2.</span><span style="display: inline-block; vertical-align: top; margin-left: 10px;">Lean大佬的固件性能强悍，运行稳定，温度也控制得不错，室温26度的密闭弱电箱内，CPU温度在43度左右。但是其Luci界面版本还停留在18.06，会导致某些系统界面和插件的选项显示不全。<a href="#fnref:2" rev="footnote"> ↩</a></span></li></ol></div></div>]]></content>
       <tags>
-        <tag>软路由</tag>
         <tag>OpenWrt</tag>
+        <tag>软路由</tag>
       </tags>
   </entry>
   <entry>
